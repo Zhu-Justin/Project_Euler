@@ -1,0 +1,5607 @@
+Vim: Warning: Output is not to a terminal
+chdir(/usr/share/vim)[?25l[J
+fchdir() to previous dir[J
+sourcing "$VIM/vimrc"[J
+line 1: " Configuration file for vim[J
+
+line 2: set modelines=0^I^I" CVE-2007-2438[J
+
+line 3: [J
+
+line 4: " Normally we use vim-extensions. If you want true vi-compatibility[J
+
+line 5: " remove change the following statements[J
+
+line 6: set nocompatible^I" Use Vim defaults instead of 100% vi compatibility[J
+
+line 7: set backspace=2^I^I" more powerful backspacing[J
+
+line 8: [J
+
+line 9: " Don't write backup file if vim is being called by "crontab -e"[J
+
+line 10: au BufWrite /private/tmp/crontab.* set nowritebackup nobackup[J
+
+line 11: " Don't write backup file if vim is being called by "chpass"[J
+
+line 12: au BufWrite /private/etc/pw.* set nowritebackup nobackup[J
+
+line 13: [J
+
+line 14: let skip_defaults_vim=1[J
+
+finished sourcing $VIM/vimrc[J
+chdir(/Users/jzhu)[J
+fchdir() to previous dir[J
+sourcing "$HOME/.vimrc"[J
+line 1: " Justin Zhu vimrc file[J
+
+line 2: [J
+
+line 3: set number[J
+
+line 4: set showcmd[J
+
+line 5: set cursorline[J
+
+line 6: filetype indent on[J
+
+Searching for "filetype.vim" in "/Users/jzhu/.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,/Users/jzhu/.vim/after"[J
+Searching for "/Users/jzhu/.vim/filetype.vim"[J
+Searching for "/usr/share/vim/vimfiles/filetype.vim"[J
+Searching for "/usr/share/vim/vim80/filetype.vim"[J
+chdir(/usr/share/vim/vim80)[J
+fchdir() to previous dir[J
+line 6: sourcing "/usr/share/vim/vim80/filetype.vim"[J
+line 1: " Vim support file to detect file types[J
+
+line 2: "[J
+
+line 3: " Maintainer:^IBram Moolenaar <Bram@vim.org>[J
+
+line 4: " Last Change:^I2017 Nov 09[J
+
+line 5: [J
+
+line 6: " Listen very carefully, I will say this only once[J
+
+line 7: if exists("did_load_filetypes")[J
+
+line 8:   finish[J
+
+line 9: endif[J
+
+line 10: let did_load_filetypes = 1[J
+
+line 11: [J
+
+line 12: " Line continuation is used here, remove 'C' from 'cpoptions'[J
+
+line 13: let s:cpo_save = &cpo[J
+
+line 14: set cpo&vim[J
+
+line 15: [J
+
+line 16: augroup filetypedetect[J
+
+line 17: [J
+
+line 18: " Ignored extensions[J
+
+line 19: if exists("*fnameescape")[J
+
+line 21: au BufNewFile,BufRead ?\+.orig,?\+.bak,?\+.old,?\+.new,?\+.dpkg-dist,?\+.dpkg-old,?\+.dpkg-new,?\+.dpkg-bak,?\+.rpmsave,?\+.rpmnew,?\+.pacsave,?\+.pacnew exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r"))[J
+
+line 28: au BufNewFile,BufRead *~ let s:name = expand("<afile>") | let s:short = substitute(s:name, '\~$', '', '') | if s:name != s:short && s:short != "" |   exe "doau filetypedetect BufRead " . fnameescape(s:short) | endif | unlet! s:name s:short[J
+
+line 32: au BufNewFile,BufRead ?\+.in if expand("<afile>:t") != "configure.in" |   exe "doau filetypedetect BufRead " . fnameescape(expand("<afile>:r")) | endif[J
+
+line 33: elseif &verbose > 0[J
+
+line 34:   echomsg "Warning: some filetypes will not be recognized because this version of Vim does not have fnameescape()"[J
+
+line 35: endif[J
+
+line 36: [J
+
+line 37: " Pattern used to match file names which should not be inspected.[J
+
+line 38: " Currently finds compressed files.[J
+
+line 39: if !exists("g:ft_ignore_pat")[J
+
+line 40:   let g:ft_ignore_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\)$'[J
+
+line 41: endif[J
+
+line 42: [J
+
+line 43: " Function used for patterns that end in a star: don't set the filetype if the[J
+
+line 44: " file name matches ft_ignore_pat.[J
+
+line 45: func! s:StarSetf(ft)[J
+
+line 50: [J
+
+line 51: " Vim help file[J
+
+line 52: au BufNewFile,BufRead $VIMRUNTIME/doc/*.txt^Isetf help[J
+
+line 53: [J
+
+line 54: " Abaqus or Trasys[J
+
+line 55: au BufNewFile,BufRead *.inp^I^I^Icall filetype#Check_inp()[J
+
+line 56: [J
+
+line 57: " A-A-P recipe[J
+
+line 58: au BufNewFile,BufRead *.aap^I^I^Isetf aap[J
+
+line 59: [J
+
+line 60: " A2ps printing utility[J
+
+line 61: au BufNewFile,BufRead */etc/a2ps.cfg,*/etc/a2ps/*.cfg,a2psrc,.a2psrc setf a2ps[J
+
+line 62: [J
+
+line 63: " ABAB/4[J
+
+line 64: au BufNewFile,BufRead *.abap^I^I^Isetf abap[J
+
+line 65: [J
+
+line 66: " ABC music notation[J
+
+line 67: au BufNewFile,BufRead *.abc^I^I^Isetf abc[J
+
+line 68: [J
+
+line 69: " ABEL[J
+
+line 70: au BufNewFile,BufRead *.abl^I^I^Isetf abel[J
+
+line 71: [J
+
+line 72: " AceDB[J
+
+line 73: au BufNewFile,BufRead *.wrm^I^I^Isetf acedb[J
+
+line 74: [J
+
+line 75: " Ada (83, 9X, 95)[J
+
+line 76: au BufNewFile,BufRead *.adb,*.ads,*.ada^I^Isetf ada[J
+
+line 77: if has("vms")[J
+
+line 78:   au BufNewFile,BufRead *.gpr,*.ada_m,*.adc^Isetf ada[J
+
+line 79: else[J
+
+line 80:   au BufNewFile,BufRead *.gpr^I^I^Isetf ada[J
+
+line 81: endif[J
+
+line 82: [J
+
+line 83: " AHDL[J
+
+line 84: au BufNewFile,BufRead *.tdf^I^I^Isetf ahdl[J
+
+line 85: [J
+
+line 86: " AMPL[J
+
+line 87: au BufNewFile,BufRead *.run^I^I^Isetf ampl[J
+
+line 88: [J
+
+line 89: " Ant[J
+
+line 90: au BufNewFile,BufRead build.xml^I^I^Isetf ant[J
+
+line 91: [J
+
+line 92: " Arduino[J
+
+line 93: au BufNewFile,BufRead *.ino,*.pde^I^Isetf arduino[J
+
+line 94: [J
+
+line 95: " Apache style config file[J
+
+line 96: au BufNewFile,BufRead proftpd.conf*^I^Icall s:StarSetf('apachestyle')[J
+
+line 97: [J
+
+line 98: " Apache config file[J
+
+line 99: au BufNewFile,BufRead .htaccess,*/etc/httpd/*.conf^I^Isetf apache[J
+
+line 100: [J
+
+line 101: " XA65 MOS6510 cross assembler[J
+
+line 102: au BufNewFile,BufRead *.a65^I^I^Isetf a65[J
+
+line 103: [J
+
+line 104: " Applescript[J
+
+line 105: au BufNewFile,BufRead *.scpt^I^I^Isetf applescript[J
+
+line 106: [J
+
+line 107: " Applix ELF[J
+
+line 109: au BufNewFile,BufRead *.am if expand("<afile>") !~? 'Makefile.am\>' | setf elf | endif[J
+
+line 110: [J
+
+line 111: " ALSA configuration[J
+
+line 112: au BufNewFile,BufRead .asoundrc,*/usr/share/alsa/alsa.conf,*/etc/asound.conf setf alsaconf[J
+
+line 113: [J
+
+line 114: " Arc Macro Language[J
+
+line 115: au BufNewFile,BufRead *.aml^I^I^Isetf aml[J
+
+line 116: [J
+
+line 117: " APT config file[J
+
+line 118: au BufNewFile,BufRead apt.conf^I^I       setf aptconf[J
+
+line 119: au BufNewFile,BufRead */.aptitude/config       setf aptconf[J
+
+line 120: au BufNewFile,BufRead */etc/apt/apt.conf.d/{[-_[:alnum:]]\+,[-_.[:alnum:]]\+.conf} setf aptconf[J
+
+line 121: [J
+
+line 122: " Arch Inventory file[J
+
+line 123: au BufNewFile,BufRead .arch-inventory,=tagging-method^Isetf arch[J
+
+line 124: [J
+
+line 125: " ART*Enterprise (formerly ART-IM)[J
+
+line 126: au BufNewFile,BufRead *.art^I^I^Isetf art[J
+
+line 127: [J
+
+line 128: " AsciiDoc[J
+
+line 129: au BufNewFile,BufRead *.asciidoc,*.adoc^I^Isetf asciidoc[J
+
+line 130: [J
+
+line 131: " ASN.1[J
+
+line 132: au BufNewFile,BufRead *.asn,*.asn1^I^Isetf asn[J
+
+line 133: [J
+
+line 134: " Active Server Pages (with Visual Basic Script)[J
+
+line 140: au BufNewFile,BufRead *.asa if exists("g:filetype_asa") |   exe "setf " . g:filetype_asa | else |   setf aspvbs | endif[J
+
+line 141: [J
+
+line 142: " Active Server Pages (with Perl or Visual Basic Script)[J
+
+line 150: au BufNewFile,BufRead *.asp if exists("g:filetype_asp") |   exe "setf " . g:filetype_asp | elseif getline(1) . getline(2) . getline(3) =~? "perlscript" |   setf aspperl | else |   setf aspvbs | endif[J
+
+line 151: [J
+
+line 152: " Grub (must be before catch *.lst)[J
+
+line 153: au BufNewFile,BufRead */boot/grub/menu.lst,*/boot/grub/grub.conf,*/etc/grub.conf setf grub[J
+
+line 154: [J
+
+line 155: " Assembly (all kinds)[J
+
+line 156: " *.lst is not pure assembly, it has two extra columns (address, byte codes)[J
+
+line 157: au BufNewFile,BufRead *.asm,*.[sS],*.[aA],*.mac,*.lst^Icall filetype#FTasm()[J
+
+line 158: [J
+
+line 159: " Macro (VAX)[J
+
+line 160: au BufNewFile,BufRead *.mar^I^I^Isetf vmasm[J
+
+line 161: [J
+
+line 162: " Atlas[J
+
+line 163: au BufNewFile,BufRead *.atl,*.as^I^Isetf atlas[J
+
+line 164: [J
+
+line 165: " Autoit v3[J
+
+line 166: au BufNewFile,BufRead *.au3^I^I^Isetf autoit[J
+
+line 167: [J
+
+line 168: " Autohotkey[J
+
+line 169: au BufNewFile,BufRead *.ahk^I^I^Isetf autohotkey[J
+
+line 170: [J
+
+line 171: " Automake[J
+
+line 172: au BufNewFile,BufRead [mM]akefile.am,GNUmakefile.am^Isetf automake[J
+
+line 173: [J
+
+line 174: " Autotest .at files are actually m4[J
+
+line 175: au BufNewFile,BufRead *.at^I^I^Isetf m4[J
+
+line 176: [J
+
+line 177: " Avenue[J
+
+line 178: au BufNewFile,BufRead *.ave^I^I^Isetf ave[J
+
+line 179: [J
+
+line 180: " Awk[J
+
+line 181: au BufNewFile,BufRead *.awk^I^I^Isetf awk[J
+
+line 182: [J
+
+line 183: " B[J
+
+line 184: au BufNewFile,BufRead *.mch,*.ref,*.imp^I^Isetf b[J
+
+line 185: [J
+
+line 186: " BASIC or Visual Basic[J
+
+line 187: au BufNewFile,BufRead *.bas^I^I^Icall filetype#FTVB("basic")[J
+
+line 188: [J
+
+line 189: " Visual Basic Script (close to Visual Basic) or Visual Basic .NET[J
+
+line 190: au BufNewFile,BufRead *.vb,*.vbs,*.dsm,*.ctl^Isetf vb[J
+
+line 191: [J
+
+line 192: " IBasic file (similar to QBasic)[J
+
+line 193: au BufNewFile,BufRead *.iba,*.ibi^I^Isetf ibasic[J
+
+line 194: [J
+
+line 195: " FreeBasic file (similar to QBasic)[J
+
+line 196: au BufNewFile,BufRead *.fb,*.bi^I^I^Isetf freebasic[J
+
+line 197: [J
+
+line 198: " Batch file for MSDOS.[J
+
+line 199: au BufNewFile,BufRead *.bat,*.sys^I^Isetf dosbatch[J
+
+line 200: " *.cmd is close to a Batch file, but on OS/2 Rexx files also use *.cmd.[J
+
+line 202: au BufNewFile,BufRead *.cmd if getline(1) =~ '^/\*' | setf rexx | else | setf dosbatch | endif[J
+
+line 203: [J
+
+line 204: " Batch file for 4DOS[J
+
+line 205: au BufNewFile,BufRead *.btm^I^I^Icall filetype#FTbtm()[J
+
+line 206: [J
+
+line 207: " BC calculator[J
+
+line 208: au BufNewFile,BufRead *.bc^I^I^Isetf bc[J
+
+line 209: [J
+
+line 210: " BDF font[J
+
+line 211: au BufNewFile,BufRead *.bdf^I^I^Isetf bdf[J
+
+line 212: [J
+
+line 213: " BibTeX bibliography database file[J
+
+line 214: au BufNewFile,BufRead *.bib^I^I^Isetf bib[J
+
+line 215: [J
+
+line 216: " BibTeX Bibliography Style[J
+
+line 217: au BufNewFile,BufRead *.bst^I^I^Isetf bst[J
+
+line 218: [J
+
+line 219: " BIND configuration[J
+
+line 220: " sudoedit uses namedXXXX.conf[J
+
+line 221: au BufNewFile,BufRead named*.conf,rndc*.conf,rndc*.key^Isetf named[J
+
+line 222: [J
+
+line 223: " BIND zone[J
+
+line 224: au BufNewFile,BufRead named.root^I^Isetf bindzone[J
+
+line 225: au BufNewFile,BufRead *.db^I^I^Icall filetype#BindzoneCheck('')[J
+
+line 226: [J
+
+line 227: " Blank[J
+
+line 228: au BufNewFile,BufRead *.bl^I^I^Isetf blank[J
+
+line 229: [J
+
+line 230: " Blkid cache file[J
+
+line 231: au BufNewFile,BufRead */etc/blkid.tab,*/etc/blkid.tab.old   setf xml[J
+
+line 232: [J
+
+line 233: " Bazel (http://bazel.io)[J
+
+line 234: autocmd BufRead,BufNewFile *.bzl,WORKSPACE ^Isetf bzl[J
+
+line 235: if has("fname_case")[J
+
+line 236:   " There is another check for BUILD further below.[J
+
+line 237:   autocmd BufRead,BufNewFile BUILD^I^Isetf bzl[J
+
+line 238: endif[J
+
+line 239: [J
+
+line 240: " C or lpc[J
+
+line 241: au BufNewFile,BufRead *.c^I^I^Icall filetype#FTlpc()[J
+
+line 242: [J
+
+line 243: " Calendar[J
+
+line 244: au BufNewFile,BufRead calendar^I^I^Isetf calendar[J
+
+line 245: [J
+
+line 246: " C#[J
+
+line 247: au BufNewFile,BufRead *.cs^I^I^Isetf cs[J
+
+line 248: [J
+
+line 249: " CSDL[J
+
+line 250: au BufNewFile,BufRead *.csdl^I^I^Isetf csdl[J
+
+line 251: [J
+
+line 252: " Cabal[J
+
+line 253: au BufNewFile,BufRead *.cabal^I^I^Isetf cabal[J
+
+line 254: [J
+
+line 255: " Cdrdao TOC[J
+
+line 256: au BufNewFile,BufRead *.toc^I^I^Isetf cdrtoc[J
+
+line 257: [J
+
+line 258: " Cdrdao config[J
+
+line 259: au BufNewFile,BufRead */etc/cdrdao.conf,*/etc/defaults/cdrdao,*/etc/default/cdrdao,.cdrdao^Isetf cdrdaoconf[J
+
+line 260: [J
+
+line 261: " Cfengine[J
+
+line 262: au BufNewFile,BufRead cfengine.conf^I^Isetf cfengine[J
+
+line 263: [J
+
+line 264: " ChaiScript[J
+
+line 265: au BufRead,BufNewFile *.chai^I^I^Isetf chaiscript[J
+
+line 266: [J
+
+line 267: " Comshare Dimension Definition Language[J
+
+line 268: au BufNewFile,BufRead *.cdl^I^I^Isetf cdl[J
+
+line 269: [J
+
+line 270: " Conary Recipe[J
+
+line 271: au BufNewFile,BufRead *.recipe^I^I^Isetf conaryrecipe[J
+
+line 272: [J
+
+line 273: " Controllable Regex Mutilator[J
+
+line 274: au BufNewFile,BufRead *.crm^I^I^Isetf crm[J
+
+line 275: [J
+
+line 276: " Cyn++[J
+
+line 277: au BufNewFile,BufRead *.cyn^I^I^Isetf cynpp[J
+
+line 278: [J
+
+line 279: " Cynlib[J
+
+line 280: " .cc and .cpp files can be C++ or Cynlib.[J
+
+line 282: au BufNewFile,BufRead *.cc if exists("cynlib_syntax_for_cc")|setf cynlib|else|setf cpp|endif[J
+
+line 284: au BufNewFile,BufRead *.cpp if exists("cynlib_syntax_for_cpp")|setf cynlib|else|setf cpp|endif[J
+
+line 285: [J
+
+line 286: " C++[J
+
+line 287: au BufNewFile,BufRead *.cxx,*.c++,*.hh,*.hxx,*.hpp,*.ipp,*.moc,*.tcc,*.inl setf cpp[J
+
+line 288: if has("fname_case")[J
+
+line 289:   au BufNewFile,BufRead *.C,*.H setf cpp[J
+
+line 290: endif[J
+
+line 291: [J
+
+line 292: " .h files can be C, Ch C++, ObjC or ObjC++.[J
+
+line 293: " Set c_syntax_for_h if you want C, ch_syntax_for_h if you want Ch. ObjC is[J
+
+line 294: " detected automatically.[J
+
+line 295: au BufNewFile,BufRead *.h^I^I^Icall filetype#FTheader()[J
+
+line 296: [J
+
+line 297: " Ch (CHscript)[J
+
+line 298: au BufNewFile,BufRead *.chf^I^I^Isetf ch[J
+
+line 299: [J
+
+line 300: " TLH files are C++ headers generated by Visual C++'s #import from typelibs[J
+
+line 301: au BufNewFile,BufRead *.tlh^I^I^Isetf cpp[J
+
+line 302: [J
+
+line 303: " Cascading Style Sheets[J
+
+line 304: au BufNewFile,BufRead *.css^I^I^Isetf css[J
+
+line 305: [J
+
+line 306: " Century Term Command Scripts (*.cmd too)[J
+
+line 307: au BufNewFile,BufRead *.con^I^I^Isetf cterm[J
+
+line 308: [J
+
+line 309: " Changelog[J
+
+line 311: au BufNewFile,BufRead changelog.Debian,changelog.dch,NEWS.Debian,NEWS.dch^Isetf debchangelog[J
+
+line 312: [J
+
+line 318: au BufNewFile,BufRead [cC]hange[lL]og  if getline(1) =~ '; urgency='|   setf debchangelog| else|   setf changelog| endif[J
+
+line 319: [J
+
+line 323: au BufNewFile,BufRead NEWS  if getline(1) =~ '; urgency='|   setf debchangelog| endif[J
+
+line 324: [J
+
+line 325: " CHILL[J
+
+line 326: au BufNewFile,BufRead *..ch^I^I^Isetf chill[J
+
+line 327: [J
+
+line 328: " Changes for WEB and CWEB or CHILL[J
+
+line 329: au BufNewFile,BufRead *.ch^I^I^Icall filetype#FTchange()[J
+
+line 330: [J
+
+line 331: " ChordPro[J
+
+line 332: au BufNewFile,BufRead *.chopro,*.crd,*.cho,*.crdpro,*.chordpro^Isetf chordpro[J
+
+line 333: [J
+
+line 334: " Clean[J
+
+line 335: au BufNewFile,BufRead *.dcl,*.icl^I^Isetf clean[J
+
+line 336: [J
+
+line 337: " Clever[J
+
+line 338: au BufNewFile,BufRead *.eni^I^I^Isetf cl[J
+
+line 339: [J
+
+line 340: " Clever or dtd[J
+
+line 341: au BufNewFile,BufRead *.ent^I^I^Icall filetype#FTent()[J
+
+line 342: [J
+
+line 343: " Clipper (or FoxPro; could also be eviews)[J
+
+line 349: au BufNewFile,BufRead *.prg if exists("g:filetype_prg") |   exe "setf " . g:filetype_prg | else |   setf clipper | endif[J
+
+line 350: [J
+
+line 351: " Clojure[J
+
+line 352: au BufNewFile,BufRead *.clj,*.cljs,*.cljx,*.cljc^I^Isetf clojure[J
+
+line 353: [J
+
+line 354: " Cmake[J
+
+line 355: au BufNewFile,BufRead CMakeLists.txt,*.cmake,*.cmake.in^I^Isetf cmake[J
+
+line 356: [J
+
+line 357: " Cmusrc[J
+
+line 358: au BufNewFile,BufRead */.cmus/{autosave,rc,command-history,*.theme} setf cmusrc[J
+
+line 359: au BufNewFile,BufRead */cmus/{rc,*.theme}^I^I^Isetf cmusrc[J
+
+line 360: [J
+
+line 361: " Cobol[J
+
+line 362: au BufNewFile,BufRead *.cbl,*.cob,*.lib^Isetf cobol[J
+
+line 363: "   cobol or zope form controller python script? (heuristic)[J
+
+line 369: au BufNewFile,BufRead *.cpy if getline(1) =~ '^##' |   setf python | else |   setf cobol | endif[J
+
+line 370: [J
+
+line 371: " Coco/R[J
+
+line 372: au BufNewFile,BufRead *.atg^I^I^Isetf coco[J
+
+line 373: [J
+
+line 374: " Cold Fusion[J
+
+line 375: au BufNewFile,BufRead *.cfm,*.cfi,*.cfc^I^Isetf cf[J
+
+line 376: [J
+
+line 377: " Configure scripts[J
+
+line 378: au BufNewFile,BufRead configure.in,configure.ac setf config[J
+
+line 379: [J
+
+line 380: " CUDA  Cumpute Unified Device Architecture[J
+
+line 381: au BufNewFile,BufRead *.cu^I^I^Isetf cuda[J
+
+line 382: [J
+
+line 383: " Dockerfile[J
+
+line 384: au BufNewFile,BufRead Dockerfile,*.Dockerfile^Isetf dockerfile[J
+
+line 385: [J
+
+line 386: " WildPackets EtherPeek Decoder[J
+
+line 387: au BufNewFile,BufRead *.dcd^I^I^Isetf dcd[J
+
+line 388: [J
+
+line 389: " Enlightenment configuration files[J
+
+line 390: au BufNewFile,BufRead *enlightenment/*.cfg^Isetf c[J
+
+line 391: [J
+
+line 392: " Eterm[J
+
+line 393: au BufNewFile,BufRead *Eterm/*.cfg^I^Isetf eterm[J
+
+line 394: [J
+
+line 395: " Euphoria 3 or 4[J
+
+line 396: au BufNewFile,BufRead *.eu,*.ew,*.ex,*.exu,*.exw  call filetype#EuphoriaCheck()[J
+
+line 397: if has("fname_case")[J
+
+line 398:    au BufNewFile,BufRead *.EU,*.EW,*.EX,*.EXU,*.EXW  call filetype#EuphoriaCheck()[J
+
+line 399: endif[J
+
+line 400: [J
+
+line 401: " Lynx config files[J
+
+line 402: au BufNewFile,BufRead lynx.cfg^I^I^Isetf lynx[J
+
+line 403: [J
+
+line 404: " Quake[J
+
+line 405: au BufNewFile,BufRead *baseq[2-3]/*.cfg,*id1/*.cfg^Isetf quake[J
+
+line 406: au BufNewFile,BufRead *quake[1-3]/*.cfg^I^I^Isetf quake[J
+
+line 407: [J
+
+line 408: " Quake C[J
+
+line 409: au BufNewFile,BufRead *.qc^I^I^Isetf c[J
+
+line 410: [J
+
+line 411: " Configure files[J
+
+line 412: au BufNewFile,BufRead *.cfg^I^I^Isetf cfg[J
+
+line 413: [J
+
+line 414: " Cucumber[J
+
+line 415: au BufNewFile,BufRead *.feature^I^I^Isetf cucumber[J
+
+line 416: [J
+
+line 417: " Communicating Sequential Processes[J
+
+line 418: au BufNewFile,BufRead *.csp,*.fdr^I^Isetf csp[J
+
+line 419: [J
+
+line 420: " CUPL logic description and simulation[J
+
+line 421: au BufNewFile,BufRead *.pld^I^I^Isetf cupl[J
+
+line 422: au BufNewFile,BufRead *.si^I^I^Isetf cuplsim[J
+
+line 423: [J
+
+line 424: " Debian Control[J
+
+line 425: au BufNewFile,BufRead */debian/control^I^Isetf debcontrol[J
+
+line 429: au BufNewFile,BufRead control  if getline(1) =~ '^Source:'|   setf debcontrol| endif[J
+
+line 430: [J
+
+line 431: " Debian Sources.list[J
+
+line 432: au BufNewFile,BufRead */etc/apt/sources.list^I^Isetf debsources[J
+
+line 433: au BufNewFile,BufRead */etc/apt/sources.list.d/*.list^Isetf debsources[J
+
+line 434: [J
+
+line 435: " Deny hosts[J
+
+line 436: au BufNewFile,BufRead denyhosts.conf^I^Isetf denyhosts[J
+
+line 437: [J
+
+line 438: " dnsmasq(8) configuration files[J
+
+line 439: au BufNewFile,BufRead */etc/dnsmasq.conf^Isetf dnsmasq[J
+
+line 440: [J
+
+line 441: " ROCKLinux package description[J
+
+line 442: au BufNewFile,BufRead *.desc^I^I^Isetf desc[J
+
+line 443: [J
+
+line 444: " the D language or dtrace[J
+
+line 445: au BufNewFile,BufRead *.d^I^I^Icall filetype#DtraceCheck()[J
+
+line 446: [J
+
+line 447: " Desktop files[J
+
+line 448: au BufNewFile,BufRead *.desktop,.directory^Isetf desktop[J
+
+line 449: [J
+
+line 450: " Dict config[J
+
+line 451: au BufNewFile,BufRead dict.conf,.dictrc^I^Isetf dictconf[J
+
+line 452: [J
+
+line 453: " Dictd config[J
+
+line 454: au BufNewFile,BufRead dictd.conf^I^Isetf dictdconf[J
+
+line 455: [J
+
+line 456: " Diff files[J
+
+line 457: au BufNewFile,BufRead *.diff,*.rej^I^Isetf diff[J
+
+line 463: au BufNewFile,BufRead *.patch if getline(1) =~ '^From [0-9a-f]\{40\} Mon Sep 17 00:00:00 2001$' |   setf gitsendemail | else |   setf diff | endif[J
+
+line 464: [J
+
+line 465: " Dircolors[J
+
+line 466: au BufNewFile,BufRead .dir_colors,.dircolors,*/etc/DIR_COLORS^Isetf dircolors[J
+
+line 467: [J
+
+line 468: " Diva (with Skill) or InstallShield[J
+
+line 474: au BufNewFile,BufRead *.rul if getline(1).getline(2).getline(3).getline(4).getline(5).getline(6) =~? 'InstallShield' |   setf ishd | else |   setf diva | endif[J
+
+line 475: [J
+
+line 476: " DCL (Digital Command Language - vms) or DNS zone file[J
+
+line 477: au BufNewFile,BufRead *.com^I^I^Icall filetype#BindzoneCheck('dcl')[J
+
+line 478: [J
+
+line 479: " DOT[J
+
+line 480: au BufNewFile,BufRead *.dot^I^I^Isetf dot[J
+
+line 481: [J
+
+line 482: " Dylan - lid files[J
+
+line 483: au BufNewFile,BufRead *.lid^I^I^Isetf dylanlid[J
+
+line 484: [J
+
+line 485: " Dylan - intr files (melange)[J
+
+line 486: au BufNewFile,BufRead *.intr^I^I^Isetf dylanintr[J
+
+line 487: [J
+
+line 488: " Dylan[J
+
+line 489: au BufNewFile,BufRead *.dylan^I^I^Isetf dylan[J
+
+line 490: [J
+
+line 491: " Microsoft Module Definition[J
+
+line 492: au BufNewFile,BufRead *.def^I^I^Isetf def[J
+
+line 493: [J
+
+line 494: " Dracula[J
+
+line 495: au BufNewFile,BufRead *.drac,*.drc,*lvs,*lpe^Isetf dracula[J
+
+line 496: [J
+
+line 497: " Datascript[J
+
+line 498: au BufNewFile,BufRead *.ds^I^I^Isetf datascript[J
+
+line 499: [J
+
+line 500: " dsl[J
+
+line 501: au BufNewFile,BufRead *.dsl^I^I^Isetf dsl[J
+
+line 502: [J
+
+line 503: " DTD (Document Type Definition for XML)[J
+
+line 504: au BufNewFile,BufRead *.dtd^I^I^Isetf dtd[J
+
+line 505: [J
+
+line 506: " DTS/DSTI (device tree files)[J
+
+line 507: au BufNewFile,BufRead *.dts,*.dtsi^I^Isetf dts[J
+
+line 508: [J
+
+line 509: " EDIF (*.edf,*.edif,*.edn,*.edo) or edn[J
+
+line 510: au BufNewFile,BufRead *.ed\(f\|if\|o\)^I^Isetf edif[J
+
+line 516: au BufNewFile,BufRead *.edn if getline(1) =~ '^\s*(\s*edif\>' |   setf edif | else |   setf clojure | endif[J
+
+line 517: [J
+
+line 518: " EditorConfig (close enough to dosini)[J
+
+line 519: au BufNewFile,BufRead .editorconfig^I^Isetf dosini[J
+
+line 520: [J
+
+line 521: " Embedix Component Description[J
+
+line 522: au BufNewFile,BufRead *.ecd^I^I^Isetf ecd[J
+
+line 523: [J
+
+line 524: " Eiffel or Specman or Euphoria[J
+
+line 525: au BufNewFile,BufRead *.e,*.E^I^I^Icall filetype#FTe()[J
+
+line 526: [J
+
+line 527: " Elinks configuration[J
+
+line 528: au BufNewFile,BufRead */etc/elinks.conf,*/.elinks/elinks.conf^Isetf elinks[J
+
+line 529: [J
+
+line 530: " ERicsson LANGuage; Yaws is erlang too[J
+
+line 531: au BufNewFile,BufRead *.erl,*.hrl,*.yaws^Isetf erlang[J
+
+line 532: [J
+
+line 533: " Elm Filter Rules file[J
+
+line 534: au BufNewFile,BufRead filter-rules^I^Isetf elmfilt[J
+
+line 535: [J
+
+line 536: " ESMTP rc file[J
+
+line 537: au BufNewFile,BufRead *esmtprc^I^I^Isetf esmtprc[J
+
+line 538: [J
+
+line 539: " ESQL-C[J
+
+line 540: au BufNewFile,BufRead *.ec,*.EC^I^I^Isetf esqlc[J
+
+line 541: [J
+
+line 542: " Esterel[J
+
+line 543: au BufNewFile,BufRead *.strl^I^I^Isetf esterel[J
+
+line 544: [J
+
+line 545: " Essbase script[J
+
+line 546: au BufNewFile,BufRead *.csc^I^I^Isetf csc[J
+
+line 547: [J
+
+line 548: " Exim[J
+
+line 549: au BufNewFile,BufRead exim.conf^I^I^Isetf exim[J
+
+line 550: [J
+
+line 551: " Expect[J
+
+line 552: au BufNewFile,BufRead *.exp^I^I^Isetf expect[J
+
+line 553: [J
+
+line 554: " Exports[J
+
+line 555: au BufNewFile,BufRead exports^I^I^Isetf exports[J
+
+line 556: [J
+
+line 557: " Falcon[J
+
+line 558: au BufNewFile,BufRead *.fal^I^I^Isetf falcon[J
+
+line 559: [J
+
+line 560: " Fantom[J
+
+line 561: au BufNewFile,BufRead *.fan,*.fwt^I^Isetf fan[J
+
+line 562: [J
+
+line 563: " Factor[J
+
+line 564: au BufNewFile,BufRead *.factor^I^I^Isetf factor[J
+
+line 565: [J
+
+line 566: " Fetchmail RC file[J
+
+line 567: au BufNewFile,BufRead .fetchmailrc^I^Isetf fetchmail[J
+
+line 568: [J
+
+line 569: " FlexWiki - disabled, because it has side effects when a .wiki file[J
+
+line 570: " is not actually FlexWiki[J
+
+line 571: "au BufNewFile,BufRead *.wiki^I^I^Isetf flexwiki[J
+
+line 572: [J
+
+line 573: " Focus Executable[J
+
+line 574: au BufNewFile,BufRead *.fex,*.focexec^I^Isetf focexec[J
+
+line 575: [J
+
+line 576: " Focus Master file (but not for auto.master)[J
+
+line 577: au BufNewFile,BufRead auto.master^I^Isetf conf[J
+
+line 578: au BufNewFile,BufRead *.mas,*.master^I^Isetf master[J
+
+line 579: [J
+
+line 580: " Forth[J
+
+line 581: au BufNewFile,BufRead *.fs,*.ft^I^I^Isetf forth[J
+
+line 582: [J
+
+line 583: " Reva Forth[J
+
+line 584: au BufNewFile,BufRead *.frt^I^I^Isetf reva[J
+
+line 585: [J
+
+line 586: " Fortran[J
+
+line 587: if has("fname_case")[J
+
+line 588:   au BufNewFile,BufRead *.F,*.FOR,*.FPP,*.FTN,*.F77,*.F90,*.F95,*.F03,*.F08^I setf fortran[J
+
+line 589: endif[J
+
+line 590: au BufNewFile,BufRead   *.f,*.for,*.fortran,*.fpp,*.ftn,*.f77,*.f90,*.f95,*.f03,*.f08  setf fortran[J
+
+line 591: [J
+
+line 592: " Framescript[J
+
+line 593: au BufNewFile,BufRead *.fsl^I^I^Isetf framescript[J
+
+line 594: [J
+
+line 595: " FStab[J
+
+line 596: au BufNewFile,BufRead fstab,mtab^I^Isetf fstab[J
+
+line 597: [J
+
+line 598: " GDB command files[J
+
+line 599: au BufNewFile,BufRead .gdbinit^I^I^Isetf gdb[J
+
+line 600: [J
+
+line 601: " GDMO[J
+
+line 602: au BufNewFile,BufRead *.mo,*.gdmo^I^Isetf gdmo[J
+
+line 603: [J
+
+line 604: " Gedcom[J
+
+line 605: au BufNewFile,BufRead *.ged,lltxxxxx.txt^Isetf gedcom[J
+
+line 606: [J
+
+line 607: " Git[J
+
+line 608: au BufNewFile,BufRead COMMIT_EDITMSG,MERGE_MSG,TAG_EDITMSG setf gitcommit[J
+
+line 609: au BufNewFile,BufRead *.git/config,.gitconfig,.gitmodules setf gitconfig[J
+
+line 610: au BufNewFile,BufRead *.git/modules/*/config^Isetf gitconfig[J
+
+line 611: au BufNewFile,BufRead */.config/git/config^Isetf gitconfig[J
+
+line 612: if !empty($XDG_CONFIG_HOME)[J
+
+line 613:   au BufNewFile,BufRead $XDG_CONFIG_HOME/git/config^Isetf gitconfig[J
+
+line 614: endif[J
+
+line 615: au BufNewFile,BufRead git-rebase-todo^I^Isetf gitrebase[J
+
+line 616: au BufRead,BufNewFile .gitsendemail.msg.??????^Isetf gitsendemail[J
+
+line 620: au BufNewFile,BufRead .msg.[0-9]* if getline(1) =~ '^From.*# This line is ignored.$' |   setf gitsendemail | endif[J
+
+line 624: au BufNewFile,BufRead *.git/* if getline(1) =~ '^\x\{40\}\>\|^ref: ' |   setf git | endif[J
+
+line 625: [J
+
+line 626: " Gkrellmrc[J
+
+line 627: au BufNewFile,BufRead gkrellmrc,gkrellmrc_?^Isetf gkrellmrc[J
+
+line 628: [J
+
+line 629: " GP scripts (2.0 and onward)[J
+
+line 630: au BufNewFile,BufRead *.gp,.gprc^I^Isetf gp[J
+
+line 631: [J
+
+line 632: " GPG[J
+
+line 633: au BufNewFile,BufRead */.gnupg/options^I^Isetf gpg[J
+
+line 634: au BufNewFile,BufRead */.gnupg/gpg.conf^I^Isetf gpg[J
+
+line 635: au BufNewFile,BufRead */usr/*/gnupg/options.skel setf gpg[J
+
+line 636: if !empty($GNUPGHOME)[J
+
+line 637:   au BufNewFile,BufRead $GNUPGHOME/options^Isetf gpg[J
+
+line 638:   au BufNewFile,BufRead $GNUPGHOME/gpg.conf^Isetf gpg[J
+
+line 639: endif[J
+
+line 640: [J
+
+line 641: " gnash(1) configuration files[J
+
+line 642: au BufNewFile,BufRead gnashrc,.gnashrc,gnashpluginrc,.gnashpluginrc setf gnash[J
+
+line 643: [J
+
+line 644: " Gitolite[J
+
+line 645: au BufNewFile,BufRead gitolite.conf^I^Isetf gitolite[J
+
+line 646: au BufNewFile,BufRead */gitolite-admin/conf/*^Icall s:StarSetf('gitolite')[J
+
+line 647: au BufNewFile,BufRead {,.}gitolite.rc,example.gitolite.rc^Isetf perl[J
+
+line 648: [J
+
+line 649: " Gnuplot scripts[J
+
+line 650: au BufNewFile,BufRead *.gpi^I^I^Isetf gnuplot[J
+
+line 651: [J
+
+line 652: " Go (Google)[J
+
+line 653: au BufNewFile,BufRead *.go^I^I^Isetf go[J
+
+line 654: [J
+
+line 655: " GrADS scripts[J
+
+line 656: au BufNewFile,BufRead *.gs^I^I^Isetf grads[J
+
+line 657: [J
+
+line 658: " Gretl[J
+
+line 659: au BufNewFile,BufRead *.gretl^I^I^Isetf gretl[J
+
+line 660: [J
+
+line 661: " Groovy[J
+
+line 662: au BufNewFile,BufRead *.gradle,*.groovy^I^Isetf groovy[J
+
+line 663: [J
+
+line 664: " GNU Server Pages[J
+
+line 665: au BufNewFile,BufRead *.gsp^I^I^Isetf gsp[J
+
+line 666: [J
+
+line 667: " Group file[J
+
+line 668: au BufNewFile,BufRead */etc/group,*/etc/group-,*/etc/group.edit,*/etc/gshadow,*/etc/gshadow-,*/etc/gshadow.edit,*/var/backups/group.bak,*/var/backups/gshadow.bak  setf group[J
+
+line 669: [J
+
+line 670: " GTK RC[J
+
+line 671: au BufNewFile,BufRead .gtkrc,gtkrc^I^Isetf gtkrc[J
+
+line 672: [J
+
+line 673: " Haml[J
+
+line 674: au BufNewFile,BufRead *.haml^I^I^Isetf haml[J
+
+line 675: [J
+
+line 676: " Hamster Classic | Playground files[J
+
+line 677: au BufNewFile,BufRead *.hsc,*.hsm^I^Isetf hamster[J
+
+line 678: [J
+
+line 679: " Haskell[J
+
+line 680: au BufNewFile,BufRead *.hs,*.hs-boot^I^Isetf haskell[J
+
+line 681: au BufNewFile,BufRead *.lhs^I^I^Isetf lhaskell[J
+
+line 682: au BufNewFile,BufRead *.chs^I^I^Isetf chaskell[J
+
+line 683: [J
+
+line 684: " Haste[J
+
+line 685: au BufNewFile,BufRead *.ht^I^I^Isetf haste[J
+
+line 686: au BufNewFile,BufRead *.htpp^I^I^Isetf hastepreproc[J
+
+line 687: [J
+
+line 688: " Hercules[J
+
+line 689: au BufNewFile,BufRead *.vc,*.ev,*.sum,*.errsum^Isetf hercules[J
+
+line 690: [J
+
+line 691: " HEX (Intel)[J
+
+line 692: au BufNewFile,BufRead *.hex,*.h32^I^Isetf hex[J
+
+line 693: [J
+
+line 694: " Tilde (must be before HTML)[J
+
+line 695: au BufNewFile,BufRead *.t.html^I^I^Isetf tilde[J
+
+line 696: [J
+
+line 697: " HTML (.shtml and .stm for server side)[J
+
+line 698: au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm  call filetype#FThtml()[J
+
+line 699: [J
+
+line 700: " HTML with Ruby - eRuby[J
+
+line 701: au BufNewFile,BufRead *.erb,*.rhtml^I^Isetf eruby[J
+
+line 702: [J
+
+line 703: " HTML with M4[J
+
+line 704: au BufNewFile,BufRead *.html.m4^I^I^Isetf htmlm4[J
+
+line 705: [J
+
+line 706: " HTML Cheetah template[J
+
+line 707: au BufNewFile,BufRead *.tmpl^I^I^Isetf htmlcheetah[J
+
+line 708: [J
+
+line 709: " Host config[J
+
+line 710: au BufNewFile,BufRead */etc/host.conf^I^Isetf hostconf[J
+
+line 711: [J
+
+line 712: " Hosts access[J
+
+line 713: au BufNewFile,BufRead */etc/hosts.allow,*/etc/hosts.deny  setf hostsaccess[J
+
+line 714: [J
+
+line 715: " Hyper Builder[J
+
+line 716: au BufNewFile,BufRead *.hb^I^I^Isetf hb[J
+
+line 717: [J
+
+line 718: " Httest[J
+
+line 719: au BufNewFile,BufRead *.htt,*.htb^I^Isetf httest[J
+
+line 720: [J
+
+line 721: " Icon[J
+
+line 722: au BufNewFile,BufRead *.icn^I^I^Isetf icon[J
+
+line 723: [J
+
+line 724: " IDL (Interface Description Language)[J
+
+line 725: au BufNewFile,BufRead *.idl^I^I^Icall filetype#FTidl()[J
+
+line 726: [J
+
+line 727: " Microsoft IDL (Interface Description Language)  Also *.idl[J
+
+line 728: " MOF = WMI (Windows Management Instrumentation) Managed Object Format[J
+
+line 729: au BufNewFile,BufRead *.odl,*.mof^I^Isetf msidl[J
+
+line 730: [J
+
+line 731: " Icewm menu[J
+
+line 732: au BufNewFile,BufRead */.icewm/menu^I^Isetf icemenu[J
+
+line 733: [J
+
+line 734: " Indent profile (must come before IDL *.pro!)[J
+
+line 735: au BufNewFile,BufRead .indent.pro^I^Isetf indent[J
+
+line 736: au BufNewFile,BufRead indent.pro^I^Icall filetype#ProtoCheck('indent')[J
+
+line 737: [J
+
+line 738: " IDL (Interactive Data Language)[J
+
+line 739: au BufNewFile,BufRead *.pro^I^I^Icall filetype#ProtoCheck('idlang')[J
+
+line 740: [J
+
+line 741: " Indent RC[J
+
+line 742: au BufNewFile,BufRead indentrc^I^I^Isetf indent[J
+
+line 743: [J
+
+line 744: " Inform[J
+
+line 745: au BufNewFile,BufRead *.inf,*.INF^I^Isetf inform[J
+
+line 746: [J
+
+line 747: " Initng[J
+
+line 748: au BufNewFile,BufRead */etc/initng/*/*.i,*.ii^Isetf initng[J
+
+line 749: [J
+
+line 750: " Innovation Data Processing[J
+
+line 751: au BufRead,BufNewFile upstream.dat\c,upstream.*.dat\c,*.upstream.dat\c ^Isetf upstreamdat[J
+
+line 752: au BufRead,BufNewFile fdrupstream.log,upstream.log\c,upstream.*.log\c,*.upstream.log\c,UPSTREAM-*.log\c ^Isetf upstreamlog[J
+
+line 753: au BufRead,BufNewFile upstreaminstall.log\c,upstreaminstall.*.log\c,*.upstreaminstall.log\c setf upstreaminstalllog[J
+
+line 754: au BufRead,BufNewFile usserver.log\c,usserver.*.log\c,*.usserver.log\c ^Isetf usserverlog[J
+
+line 755: au BufRead,BufNewFile usw2kagt.log\c,usw2kagt.*.log\c,*.usw2kagt.log\c ^Isetf usw2kagtlog[J
+
+line 756: [J
+
+line 757: " Ipfilter[J
+
+line 758: au BufNewFile,BufRead ipf.conf,ipf6.conf,ipf.rules^Isetf ipfilter[J
+
+line 759: [J
+
+line 760: " Informix 4GL (source - canonical, include file, I4GL+M4 preproc.)[J
+
+line 761: au BufNewFile,BufRead *.4gl,*.4gh,*.m4gl^Isetf fgl[J
+
+line 762: [J
+
+line 763: " .INI file for MSDOS[J
+
+line 764: au BufNewFile,BufRead *.ini^I^I^Isetf dosini[J
+
+line 765: [J
+
+line 766: " SysV Inittab[J
+
+line 767: au BufNewFile,BufRead inittab^I^I^Isetf inittab[J
+
+line 768: [J
+
+line 769: " Inno Setup[J
+
+line 770: au BufNewFile,BufRead *.iss^I^I^Isetf iss[J
+
+line 771: [J
+
+line 772: " J[J
+
+line 773: au BufNewFile,BufRead *.ijs^I^I^Isetf j[J
+
+line 774: [J
+
+line 775: " JAL[J
+
+line 776: au BufNewFile,BufRead *.jal,*.JAL^I^Isetf jal[J
+
+line 777: [J
+
+line 778: " Jam[J
+
+line 779: au BufNewFile,BufRead *.jpl,*.jpr^I^Isetf jam[J
+
+line 780: [J
+
+line 781: " Java[J
+
+line 782: au BufNewFile,BufRead *.java,*.jav^I^Isetf java[J
+
+line 783: [J
+
+line 784: " JavaCC[J
+
+line 785: au BufNewFile,BufRead *.jj,*.jjt^I^Isetf javacc[J
+
+line 786: [J
+
+line 787: " JavaScript, ECMAScript[J
+
+line 788: au BufNewFile,BufRead *.js,*.javascript,*.es,*.jsx,*.mjs   setf javascript[J
+
+line 789: [J
+
+line 790: " Java Server Pages[J
+
+line 791: au BufNewFile,BufRead *.jsp^I^I^Isetf jsp[J
+
+line 792: [J
+
+line 793: " Java Properties resource file (note: doesn't catch font.properties.pl)[J
+
+line 794: au BufNewFile,BufRead *.properties,*.properties_??,*.properties_??_??^Isetf jproperties[J
+
+line 795: au BufNewFile,BufRead *.properties_??_??_*^Icall s:StarSetf('jproperties')[J
+
+line 796: [J
+
+line 797: " Jess[J
+
+line 798: au BufNewFile,BufRead *.clp^I^I^Isetf jess[J
+
+line 799: [J
+
+line 800: " Jgraph[J
+
+line 801: au BufNewFile,BufRead *.jgr^I^I^Isetf jgraph[J
+
+line 802: [J
+
+line 803: " Jovial[J
+
+line 804: au BufNewFile,BufRead *.jov,*.j73,*.jovial^Isetf jovial[J
+
+line 805: [J
+
+line 806: " JSON[J
+
+line 807: au BufNewFile,BufRead *.json,*.jsonp,*.webmanifest^Isetf json[J
+
+line 808: [J
+
+line 809: " Kixtart[J
+
+line 810: au BufNewFile,BufRead *.kix^I^I^Isetf kix[J
+
+line 811: [J
+
+line 812: " Kimwitu[++][J
+
+line 813: au BufNewFile,BufRead *.k^I^I^Isetf kwt[J
+
+line 814: [J
+
+line 815: " Kivy[J
+
+line 816: au BufNewFile,BufRead *.kv^I^I^Isetf kivy[J
+
+line 817: [J
+
+line 818: " KDE script[J
+
+line 819: au BufNewFile,BufRead *.ks^I^I^Isetf kscript[J
+
+line 820: [J
+
+line 821: " Kconfig[J
+
+line 822: au BufNewFile,BufRead Kconfig,Kconfig.debug^Isetf kconfig[J
+
+line 823: [J
+
+line 824: " Lace (ISE)[J
+
+line 825: au BufNewFile,BufRead *.ace,*.ACE^I^Isetf lace[J
+
+line 826: [J
+
+line 827: " Latte[J
+
+line 828: au BufNewFile,BufRead *.latte,*.lte^I^Isetf latte[J
+
+line 829: [J
+
+line 830: " Limits[J
+
+line 831: au BufNewFile,BufRead */etc/limits,*/etc/*limits.conf,*/etc/*limits.d/*.conf^Isetf limits[J
+
+line 832: [J
+
+line 833: " LambdaProlog (*.mod too, see Modsim)[J
+
+line 834: au BufNewFile,BufRead *.sig^I^I^Isetf lprolog[J
+
+line 835: [J
+
+line 836: " LDAP LDIF[J
+
+line 837: au BufNewFile,BufRead *.ldif^I^I^Isetf ldif[J
+
+line 838: [J
+
+line 839: " Ld loader[J
+
+line 840: au BufNewFile,BufRead *.ld^I^I^Isetf ld[J
+
+line 841: [J
+
+line 842: " Less[J
+
+line 843: au BufNewFile,BufRead *.less^I^I^Isetf less[J
+
+line 844: [J
+
+line 845: " Lex[J
+
+line 846: au BufNewFile,BufRead *.lex,*.l,*.lxx,*.l++^Isetf lex[J
+
+line 847: [J
+
+line 848: " Libao[J
+
+line 849: au BufNewFile,BufRead */etc/libao.conf,*/.libao^Isetf libao[J
+
+line 850: [J
+
+line 851: " Libsensors[J
+
+line 852: au BufNewFile,BufRead */etc/sensors.conf,*/etc/sensors3.conf^Isetf sensors[J
+
+line 853: [J
+
+line 854: " LFTP[J
+
+line 855: au BufNewFile,BufRead lftp.conf,.lftprc,*lftp/rc^Isetf lftp[J
+
+line 856: [J
+
+line 857: " Lifelines (or Lex for C++!)[J
+
+line 858: au BufNewFile,BufRead *.ll^I^I^Isetf lifelines[J
+
+line 859: [J
+
+line 860: " Lilo: Linux loader[J
+
+line 861: au BufNewFile,BufRead lilo.conf^I^I^Isetf lilo[J
+
+line 862: [J
+
+line 863: " Lisp (*.el = ELisp, *.cl = Common Lisp, *.jl = librep Lisp)[J
+
+line 864: if has("fname_case")[J
+
+line 865:   au BufNewFile,BufRead *.lsp,*.lisp,*.el,*.cl,*.jl,*.L,.emacs,.sawfishrc setf lisp[J
+
+line 866: else[J
+
+line 867:   au BufNewFile,BufRead *.lsp,*.lisp,*.el,*.cl,*.jl,.emacs,.sawfishrc setf lisp[J
+
+line 868: endif[J
+
+line 869: [J
+
+line 870: " SBCL implementation of Common Lisp[J
+
+line 871: au BufNewFile,BufRead sbclrc,.sbclrc^I^Isetf lisp[J
+
+line 872: [J
+
+line 873: " Liquid[J
+
+line 874: au BufNewFile,BufRead *.liquid^I^I^Isetf liquid[J
+
+line 875: [J
+
+line 876: " Lite[J
+
+line 877: au BufNewFile,BufRead *.lite,*.lt^I^Isetf lite[J
+
+line 878: [J
+
+line 879: " LiteStep RC files[J
+
+line 880: au BufNewFile,BufRead */LiteStep/*/*.rc^I^Isetf litestep[J
+
+line 881: [J
+
+line 882: " Login access[J
+
+line 883: au BufNewFile,BufRead */etc/login.access^Isetf loginaccess[J
+
+line 884: [J
+
+line 885: " Login defs[J
+
+line 886: au BufNewFile,BufRead */etc/login.defs^I^Isetf logindefs[J
+
+line 887: [J
+
+line 888: " Logtalk[J
+
+line 889: au BufNewFile,BufRead *.lgt^I^I^Isetf logtalk[J
+
+line 890: [J
+
+line 891: " LOTOS[J
+
+line 892: au BufNewFile,BufRead *.lot,*.lotos^I^Isetf lotos[J
+
+line 893: [J
+
+line 894: " Lout (also: *.lt)[J
+
+line 895: au BufNewFile,BufRead *.lou,*.lout^I^Isetf lout[J
+
+line 896: [J
+
+line 897: " Lua[J
+
+line 898: au BufNewFile,BufRead *.lua^I^I^Isetf lua[J
+
+line 899: [J
+
+line 900: " Luarocks[J
+
+line 901: au BufNewFile,BufRead *.rockspec^I^Isetf lua[J
+
+line 902: [J
+
+line 903: " Linden Scripting Language (Second Life)[J
+
+line 904: au BufNewFile,BufRead *.lsl^I^I^Isetf lsl[J
+
+line 905: [J
+
+line 906: " Lynx style file (or LotusScript!)[J
+
+line 907: au BufNewFile,BufRead *.lss^I^I^Isetf lss[J
+
+line 908: [J
+
+line 909: " M4[J
+
+line 911: au BufNewFile,BufRead *.m4 if expand("<afile>") !~? 'html.m4$\|fvwm2rc' | setf m4 | endif[J
+
+line 912: [J
+
+line 913: " MaGic Point[J
+
+line 914: au BufNewFile,BufRead *.mgp^I^I^Isetf mgp[J
+
+line 915: [J
+
+line 916: " Mail (for Elm, trn, mutt, muttng, rn, slrn, neomutt)[J
+
+line 917: au BufNewFile,BufRead snd.\d\+,.letter,.letter.\d\+,.followup,.article,.article.\d\+,pico.\d\+,mutt{ng,}-*-\w\+,mutt[[:alnum:]_-]\\\{6\},neomutt-*-\w\+,neomutt[[:alnum:]_-]\\\{6\},ae\d\+.txt,/tmp/SLRN[0-9A-Z.]\+,*.eml setf mail[J
+
+line 918: [J
+
+line 919: " Mail aliases[J
+
+line 920: au BufNewFile,BufRead */etc/mail/aliases,*/etc/aliases^Isetf mailaliases[J
+
+line 921: [J
+
+line 922: " Mailcap configuration file[J
+
+line 923: au BufNewFile,BufRead .mailcap,mailcap^I^Isetf mailcap[J
+
+line 924: [J
+
+line 925: " Makefile[J
+
+line 926: au BufNewFile,BufRead *[mM]akefile,*.mk,*.mak,*.dsp setf make[J
+
+line 927: [J
+
+line 928: " MakeIndex[J
+
+line 929: au BufNewFile,BufRead *.ist,*.mst^I^Isetf ist[J
+
+line 930: [J
+
+line 931: " Mallard[J
+
+line 932: au BufNewFile,BufRead *.page^I^I^Isetf mallard[J
+
+line 933: [J
+
+line 934: " Manpage[J
+
+line 935: au BufNewFile,BufRead *.man^I^I^Isetf man[J
+
+line 936: [J
+
+line 937: " Man config[J
+
+line 938: au BufNewFile,BufRead */etc/man.conf,man.config^Isetf manconf[J
+
+line 939: [J
+
+line 940: " Maple V[J
+
+line 941: au BufNewFile,BufRead *.mv,*.mpl,*.mws^I^Isetf maple[J
+
+line 942: [J
+
+line 943: " Map (UMN mapserver config file)[J
+
+line 944: au BufNewFile,BufRead *.map^I^I^Isetf map[J
+
+line 945: [J
+
+line 946: " Markdown[J
+
+line 947: au BufNewFile,BufRead *.markdown,*.mdown,*.mkd,*.mkdn,*.mdwn,*.md  setf markdown[J
+
+line 948: [J
+
+line 949: " Mason[J
+
+line 950: au BufNewFile,BufRead *.mason,*.mhtml,*.comp^Isetf mason[J
+
+line 951: [J
+
+line 952: " Mathematica, Matlab, Murphi or Objective C[J
+
+line 953: au BufNewFile,BufRead *.m^I^I^Icall filetype#FTm()[J
+
+line 954: [J
+
+line 955: " Mathematica notebook[J
+
+line 956: au BufNewFile,BufRead *.nb^I^I^Isetf mma[J
+
+line 957: [J
+
+line 958: " Maya Extension Language[J
+
+line 959: au BufNewFile,BufRead *.mel^I^I^Isetf mel[J
+
+line 960: [J
+
+line 961: " Mercurial (hg) commit file[J
+
+line 962: au BufNewFile,BufRead hg-editor-*.txt^I^Isetf hgcommit[J
+
+line 963: [J
+
+line 964: " Mercurial config (looks like generic config file)[J
+
+line 965: au BufNewFile,BufRead *.hgrc,*hgrc^I^Isetf cfg[J
+
+line 966: [J
+
+line 967: " Messages (logs mostly)[J
+
+line 968: au BufNewFile,BufRead */log/{auth,cron,daemon,debug,kern,lpr,mail,messages,news/news,syslog,user}{,.log,.err,.info,.warn,.crit,.notice}{,.[0-9]*,-[0-9]*} setf messages[J
+
+line 969: [J
+
+line 970: " Metafont[J
+
+line 971: au BufNewFile,BufRead *.mf^I^I^Isetf mf[J
+
+line 972: [J
+
+line 973: " MetaPost[J
+
+line 974: au BufNewFile,BufRead *.mp^I^I^Isetf mp[J
+
+line 975: [J
+
+line 976: " MGL[J
+
+line 977: au BufNewFile,BufRead *.mgl^I^I^Isetf mgl[J
+
+line 978: [J
+
+line 979: " MIX - Knuth assembly[J
+
+line 980: au BufNewFile,BufRead *.mix,*.mixal^I^Isetf mix[J
+
+line 981: [J
+
+line 982: " MMIX or VMS makefile[J
+
+line 983: au BufNewFile,BufRead *.mms^I^I^Icall filetype#FTmms()[J
+
+line 984: [J
+
+line 985: " Symbian meta-makefile definition (MMP)[J
+
+line 986: au BufNewFile,BufRead *.mmp^I^I^Isetf mmp[J
+
+line 987: [J
+
+line 988: " Modsim III (or LambdaProlog)[J
+
+line 994: au BufNewFile,BufRead *.mod if getline(1) =~ '\<module\>' |   setf lprolog | else |   setf modsim3 | endif[J
+
+line 995: [J
+
+line 996: " Modula 2  (.md removed in favor of Markdown)[J
+
+line 997: au BufNewFile,BufRead *.m2,*.DEF,*.MOD,*.mi^Isetf modula2[J
+
+line 998: [J
+
+line 999: " Modula 3 (.m3, .i3, .mg, .ig)[J
+
+line 1000: au BufNewFile,BufRead *.[mi][3g]^I^Isetf modula3[J
+
+line 1001: [J
+
+line 1002: " Monk[J
+
+line 1003: au BufNewFile,BufRead *.isc,*.monk,*.ssc,*.tsc^Isetf monk[J
+
+line 1004: [J
+
+line 1005: " MOO[J
+
+line 1006: au BufNewFile,BufRead *.moo^I^I^Isetf moo[J
+
+line 1007: [J
+
+line 1008: " Modconf[J
+
+line 1009: au BufNewFile,BufRead */etc/modules.conf,*/etc/modules,*/etc/conf.modules setf modconf[J
+
+line 1010: [J
+
+line 1011: " Mplayer config[J
+
+line 1012: au BufNewFile,BufRead mplayer.conf,*/.mplayer/config^Isetf mplayerconf[J
+
+line 1013: [J
+
+line 1014: " Motorola S record[J
+
+line 1015: au BufNewFile,BufRead *.s19,*.s28,*.s37,*.mot,*.srec^Isetf srec[J
+
+line 1016: [J
+
+line 1017: " Mrxvtrc[J
+
+line 1018: au BufNewFile,BufRead mrxvtrc,.mrxvtrc^I^Isetf mrxvtrc[J
+
+line 1019: [J
+
+line 1020: " Msql[J
+
+line 1021: au BufNewFile,BufRead *.msql^I^I^Isetf msql[J
+
+line 1022: [J
+
+line 1023: " Mysql[J
+
+line 1024: au BufNewFile,BufRead *.mysql^I^I^Isetf mysql[J
+
+line 1025: [J
+
+line 1026: " Mutt setup files (must be before catch *.rc)[J
+
+line 1027: au BufNewFile,BufRead */etc/Muttrc.d/*^I^Icall s:StarSetf('muttrc')[J
+
+line 1028: [J
+
+line 1029: " M$ Resource files[J
+
+line 1030: au BufNewFile,BufRead *.rc,*.rch^I^Isetf rc[J
+
+line 1031: [J
+
+line 1032: " MuPAD source[J
+
+line 1033: au BufRead,BufNewFile *.mu^I^I^Isetf mupad[J
+
+line 1034: [J
+
+line 1035: " Mush[J
+
+line 1036: au BufNewFile,BufRead *.mush^I^I^Isetf mush[J
+
+line 1037: [J
+
+line 1038: " Mutt setup file (also for Muttng)[J
+
+line 1039: au BufNewFile,BufRead Mutt{ng,}rc^I^Isetf muttrc[J
+
+line 1040: [J
+
+line 1041: " N1QL[J
+
+line 1042: au BufRead,BufNewfile *.n1ql,*.nql^I^Isetf n1ql[J
+
+line 1043: [J
+
+line 1044: " Nano[J
+
+line 1045: au BufNewFile,BufRead */etc/nanorc,*.nanorc  ^Isetf nanorc[J
+
+line 1046: [J
+
+line 1047: " Nastran input/DMAP[J
+
+line 1048: "au BufNewFile,BufRead *.dat^I^I^Isetf nastran[J
+
+line 1049: [J
+
+line 1050: " Natural[J
+
+line 1051: au BufNewFile,BufRead *.NS[ACGLMNPS]^I^Isetf natural[J
+
+line 1052: [J
+
+line 1053: " Noemutt setup file[J
+
+line 1054: au BufNewFile,BufRead Neomuttrc^I^I^Isetf neomuttrc[J
+
+line 1055: [J
+
+line 1056: " Netrc[J
+
+line 1057: au BufNewFile,BufRead .netrc^I^I^Isetf netrc[J
+
+line 1058: [J
+
+line 1059: " Ninja file[J
+
+line 1060: au BufNewFile,BufRead *.ninja^I^I^Isetf ninja[J
+
+line 1061: [J
+
+line 1062: " Novell netware batch files[J
+
+line 1063: au BufNewFile,BufRead *.ncf^I^I^Isetf ncf[J
+
+line 1064: [J
+
+line 1065: " Nroff/Troff (*.ms and *.t are checked below)[J
+
+line 1069: au BufNewFile,BufRead *.me if expand("<afile>") != "read.me" && expand("<afile>") != "click.me" |   setf nroff | endif[J
+
+line 1070: au BufNewFile,BufRead *.tr,*.nr,*.roff,*.tmac,*.mom^Isetf nroff[J
+
+line 1071: au BufNewFile,BufRead *.[1-9]^I^I^Icall filetype#FTnroff()[J
+
+line 1072: [J
+
+line 1073: " Nroff or Objective C++[J
+
+line 1074: au BufNewFile,BufRead *.mm^I^I^Icall filetype#FTmm()[J
+
+line 1075: [J
+
+line 1076: " Not Quite C[J
+
+line 1077: au BufNewFile,BufRead *.nqc^I^I^Isetf nqc[J
+
+line 1078: [J
+
+line 1079: " NSE - Nmap Script Engine - uses Lua syntax[J
+
+line 1080: au BufNewFile,BufRead *.nse^I^I^Isetf lua[J
+
+line 1081: [J
+
+line 1082: " NSIS[J
+
+line 1083: au BufNewFile,BufRead *.nsi,*.nsh^I^Isetf nsis[J
+
+line 1084: [J
+
+line 1085: " OCAML[J
+
+line 1086: au BufNewFile,BufRead *.ml,*.mli,*.mll,*.mly,.ocamlinit^Isetf ocaml[J
+
+line 1087: [J
+
+line 1088: " Occam[J
+
+line 1089: au BufNewFile,BufRead *.occ^I^I^Isetf occam[J
+
+line 1090: [J
+
+line 1091: " Omnimark[J
+
+line 1092: au BufNewFile,BufRead *.xom,*.xin^I^Isetf omnimark[J
+
+line 1093: [J
+
+line 1094: " OpenROAD[J
+
+line 1095: au BufNewFile,BufRead *.or^I^I^Isetf openroad[J
+
+line 1096: [J
+
+line 1097: " OPL[J
+
+line 1098: au BufNewFile,BufRead *.[Oo][Pp][Ll]^I^Isetf opl[J
+
+line 1099: [J
+
+line 1100: " Oracle config file[J
+
+line 1101: au BufNewFile,BufRead *.ora^I^I^Isetf ora[J
+
+line 1102: [J
+
+line 1103: " Packet filter conf[J
+
+line 1104: au BufNewFile,BufRead pf.conf^I^I^Isetf pf[J
+
+line 1105: [J
+
+line 1106: " Pam conf[J
+
+line 1107: au BufNewFile,BufRead */etc/pam.conf^I^Isetf pamconf[J
+
+line 1108: [J
+
+line 1109: " PApp[J
+
+line 1110: au BufNewFile,BufRead *.papp,*.pxml,*.pxsl^Isetf papp[J
+
+line 1111: [J
+
+line 1112: " Password file[J
+
+line 1113: au BufNewFile,BufRead */etc/passwd,*/etc/passwd-,*/etc/passwd.edit,*/etc/shadow,*/etc/shadow-,*/etc/shadow.edit,*/var/backups/passwd.bak,*/var/backups/shadow.bak setf passwd[J
+
+line 1114: [J
+
+line 1115: " Pascal (also *.p)[J
+
+line 1116: au BufNewFile,BufRead *.pas^I^I^Isetf pascal[J
+
+line 1117: [J
+
+line 1118: " Delphi project file[J
+
+line 1119: au BufNewFile,BufRead *.dpr^I^I^Isetf pascal[J
+
+line 1120: [J
+
+line 1121: " PDF[J
+
+line 1122: au BufNewFile,BufRead *.pdf^I^I^Isetf pdf[J
+
+line 1123: [J
+
+line 1124: " PCMK - HAE - crm configure edit [J
+
+line 1125: au BufNewFile,BufRead *.pcmk ^I^I^Isetf pcmk[J
+
+line 1126: [J
+
+line 1127: " Perl[J
+
+line 1128: if has("fname_case")[J
+
+line 1129:   au BufNewFile,BufRead *.pl,*.PL^I^Icall filetype#FTpl()[J
+
+line 1130: else[J
+
+line 1131:   au BufNewFile,BufRead *.pl^I^I^Icall filetype#FTpl()[J
+
+line 1132: endif[J
+
+line 1133: au BufNewFile,BufRead *.plx,*.al,*.psgi^I^Isetf perl[J
+
+line 1134: au BufNewFile,BufRead *.p6,*.pm6,*.pl6^I^Isetf perl6[J
+
+line 1135: [J
+
+line 1136: " Perl, XPM or XPM2[J
+
+line 1144: au BufNewFile,BufRead *.pm if getline(1) =~ "XPM2" |   setf xpm2 | elseif getline(1) =~ "XPM" |   setf xpm | else |   setf perl | endif[J
+
+line 1145: [J
+
+line 1146: " Perl POD[J
+
+line 1147: au BufNewFile,BufRead *.pod^I^I^Isetf pod[J
+
+line 1148: au BufNewFile,BufRead *.pod6^I^I^Isetf pod6[J
+
+line 1149: [J
+
+line 1150: " Php, php3, php4, etc.[J
+
+line 1151: " Also Phtml (was used for PHP 2 in the past)[J
+
+line 1152: " Also .ctp for Cake template file[J
+
+line 1153: au BufNewFile,BufRead *.php,*.php\d,*.phtml,*.ctp^Isetf php[J
+
+line 1154: [J
+
+line 1155: " Pike[J
+
+line 1156: au BufNewFile,BufRead *.pike,*.lpc,*.ulpc,*.pmod setf pike[J
+
+line 1157: [J
+
+line 1158: " Pinfo config[J
+
+line 1159: au BufNewFile,BufRead */etc/pinforc,*/.pinforc^Isetf pinfo[J
+
+line 1160: [J
+
+line 1161: " Palm Resource compiler[J
+
+line 1162: au BufNewFile,BufRead *.rcp^I^I^Isetf pilrc[J
+
+line 1163: [J
+
+line 1164: " Pine config[J
+
+line 1165: au BufNewFile,BufRead .pinerc,pinerc,.pinercex,pinercex^I^Isetf pine[J
+
+line 1166: [J
+
+line 1167: " PL/1, PL/I[J
+
+line 1168: au BufNewFile,BufRead *.pli,*.pl1^I^Isetf pli[J
+
+line 1169: [J
+
+line 1170: " PL/M (also: *.inp)[J
+
+line 1171: au BufNewFile,BufRead *.plm,*.p36,*.pac^I^Isetf plm[J
+
+line 1172: [J
+
+line 1173: " PL/SQL[J
+
+line 1174: au BufNewFile,BufRead *.pls,*.plsql^I^Isetf plsql[J
+
+line 1175: [J
+
+line 1176: " PLP[J
+
+line 1177: au BufNewFile,BufRead *.plp^I^I^Isetf plp[J
+
+line 1178: [J
+
+line 1179: " PO and PO template (GNU gettext)[J
+
+line 1180: au BufNewFile,BufRead *.po,*.pot^I^Isetf po[J
+
+line 1181: [J
+
+line 1182: " Postfix main config[J
+
+line 1183: au BufNewFile,BufRead main.cf^I^I^Isetf pfmain[J
+
+line 1184: [J
+
+line 1185: " PostScript (+ font files, encapsulated PostScript, Adobe Illustrator)[J
+
+line 1186: au BufNewFile,BufRead *.ps,*.pfa,*.afm,*.eps,*.epsf,*.epsi,*.ai^I  setf postscr[J
+
+line 1187: [J
+
+line 1188: " PostScript Printer Description[J
+
+line 1189: au BufNewFile,BufRead *.ppd^I^I^Isetf ppd[J
+
+line 1190: [J
+
+line 1191: " Povray[J
+
+line 1192: au BufNewFile,BufRead *.pov^I^I^Isetf pov[J
+
+line 1193: [J
+
+line 1194: " Povray configuration[J
+
+line 1195: au BufNewFile,BufRead .povrayrc^I^I^Isetf povini[J
+
+line 1196: [J
+
+line 1197: " Povray, PHP or assembly[J
+
+line 1198: au BufNewFile,BufRead *.inc^I^I^Icall filetype#FTinc()[J
+
+line 1199: [J
+
+line 1200: " Printcap and Termcap[J
+
+line 1202: au BufNewFile,BufRead *printcap let b:ptcap_type = "print" | setf ptcap[J
+
+line 1204: au BufNewFile,BufRead *termcap let b:ptcap_type = "term" | setf ptcap[J
+
+line 1205: [J
+
+line 1206: " PCCTS / ANTRL[J
+
+line 1207: "au BufNewFile,BufRead *.g^I^I^Isetf antrl[J
+
+line 1208: au BufNewFile,BufRead *.g^I^I^Isetf pccts[J
+
+line 1209: [J
+
+line 1210: " PPWizard[J
+
+line 1211: au BufNewFile,BufRead *.it,*.ih^I^I^Isetf ppwiz[J
+
+line 1212: [J
+
+line 1213: " Obj 3D file format[J
+
+line 1214: " TODO: is there a way to avoid MS-Windows Object files?[J
+
+line 1215: au BufNewFile,BufRead *.obj^I^I^Isetf obj[J
+
+line 1216: [J
+
+line 1217: " Oracle Pro*C/C++[J
+
+line 1218: au BufNewFile,BufRead *.pc^I^I^Isetf proc[J
+
+line 1219: [J
+
+line 1220: " Privoxy actions file[J
+
+line 1221: au BufNewFile,BufRead *.action^I^I^Isetf privoxy[J
+
+line 1222: [J
+
+line 1223: " Procmail[J
+
+line 1224: au BufNewFile,BufRead .procmail,.procmailrc^Isetf procmail[J
+
+line 1225: [J
+
+line 1226: " Progress or CWEB[J
+
+line 1227: au BufNewFile,BufRead *.w^I^I^Icall filetype#FTprogress_cweb()[J
+
+line 1228: [J
+
+line 1229: " Progress or assembly[J
+
+line 1230: au BufNewFile,BufRead *.i^I^I^Icall filetype#FTprogress_asm()[J
+
+line 1231: [J
+
+line 1232: " Progress or Pascal[J
+
+line 1233: au BufNewFile,BufRead *.p^I^I^Icall filetype#FTprogress_pascal()[J
+
+line 1234: [J
+
+line 1235: " Software Distributor Product Specification File (POSIX 1387.2-1995)[J
+
+line 1236: au BufNewFile,BufRead *.psf^I^I^Isetf psf[J
+
+line 1240: au BufNewFile,BufRead INDEX,INFO if getline(1) =~ '^\s*\(distribution\|installed_software\|root\|bundle\|product\)\s*$' |   setf psf | endif[J
+
+line 1241: [J
+
+line 1242: " Prolog[J
+
+line 1243: au BufNewFile,BufRead *.pdb^I^I^Isetf prolog[J
+
+line 1244: [J
+
+line 1245: " Promela[J
+
+line 1246: au BufNewFile,BufRead *.pml^I^I^Isetf promela[J
+
+line 1247: [J
+
+line 1248: " Google protocol buffers[J
+
+line 1249: au BufNewFile,BufRead *.proto^I^I^Isetf proto[J
+
+line 1250: [J
+
+line 1251: " Protocols[J
+
+line 1252: au BufNewFile,BufRead */etc/protocols^I^Isetf protocols[J
+
+line 1253: [J
+
+line 1254: " Pyrex[J
+
+line 1255: au BufNewFile,BufRead *.pyx,*.pxd^I^Isetf pyrex[J
+
+line 1256: [J
+
+line 1257: " Python, Python Shell Startup Files[J
+
+line 1258: " Quixote (Python-based web framework)[J
+
+line 1259: au BufNewFile,BufRead *.py,*.pyw,.pythonstartup,.pythonrc,*.ptl  setf python[J
+
+line 1260: [J
+
+line 1261: " Radiance[J
+
+line 1262: au BufNewFile,BufRead *.rad,*.mat^I^Isetf radiance[J
+
+line 1263: [J
+
+line 1264: " Ratpoison config/command files[J
+
+line 1265: au BufNewFile,BufRead .ratpoisonrc,ratpoisonrc^Isetf ratpoison[J
+
+line 1266: [J
+
+line 1267: " RCS file[J
+
+line 1268: au BufNewFile,BufRead *\,v^I^I^Isetf rcs[J
+
+line 1269: [J
+
+line 1270: " Readline[J
+
+line 1271: au BufNewFile,BufRead .inputrc,inputrc^I^Isetf readline[J
+
+line 1272: [J
+
+line 1273: " Registry for MS-Windows[J
+
+line 1275: au BufNewFile,BufRead *.reg if getline(1) =~? '^REGEDIT[0-9]*\s*$\|^Windows Registry Editor Version \d*\.\d*\s*$' | setf registry | endif[J
+
+line 1276: [J
+
+line 1277: " Renderman Interface Bytestream[J
+
+line 1278: au BufNewFile,BufRead *.rib^I^I^Isetf rib[J
+
+line 1279: [J
+
+line 1280: " Rexx[J
+
+line 1281: au BufNewFile,BufRead *.rex,*.orx,*.rxo,*.rxj,*.jrexx,*.rexxj,*.rexx,*.testGroup,*.testUnit^Isetf rexx[J
+
+line 1282: [J
+
+line 1283: " R (Splus)[J
+
+line 1284: if has("fname_case")[J
+
+line 1285:   au BufNewFile,BufRead *.s,*.S^I^I^Isetf r[J
+
+line 1286: else[J
+
+line 1287:   au BufNewFile,BufRead *.s^I^I^Isetf r[J
+
+line 1288: endif[J
+
+line 1289: [J
+
+line 1290: " R Help file[J
+
+line 1291: if has("fname_case")[J
+
+line 1292:   au BufNewFile,BufRead *.rd,*.Rd^I^Isetf rhelp[J
+
+line 1293: else[J
+
+line 1294:   au BufNewFile,BufRead *.rd^I^I^Isetf rhelp[J
+
+line 1295: endif[J
+
+line 1296: [J
+
+line 1297: " R noweb file[J
+
+line 1298: if has("fname_case")[J
+
+line 1299:   au BufNewFile,BufRead *.Rnw,*.rnw,*.Snw,*.snw^I^Isetf rnoweb[J
+
+line 1300: else[J
+
+line 1301:   au BufNewFile,BufRead *.rnw,*.snw^I^I^Isetf rnoweb[J
+
+line 1302: endif[J
+
+line 1303: [J
+
+line 1304: " R Markdown file[J
+
+line 1305: if has("fname_case")[J
+
+line 1306:   au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd^I^Isetf rmd[J
+
+line 1307: else[J
+
+line 1308:   au BufNewFile,BufRead *.rmd,*.smd^I^I^Isetf rmd[J
+
+line 1309: endif[J
+
+line 1310: [J
+
+line 1311: " R reStructuredText file[J
+
+line 1312: if has("fname_case")[J
+
+line 1313:   au BufNewFile,BufRead *.Rrst,*.rrst,*.Srst,*.srst^Isetf rrst[J
+
+line 1314: else[J
+
+line 1315:   au BufNewFile,BufRead *.rrst,*.srst^I^I^Isetf rrst[J
+
+line 1316: endif[J
+
+line 1317: [J
+
+line 1318: " Rexx, Rebol or R[J
+
+line 1319: au BufNewFile,BufRead *.r,*.R^I^I^I^Icall filetype#FTr()[J
+
+line 1320: [J
+
+line 1321: " Remind[J
+
+line 1322: au BufNewFile,BufRead .reminders,*.remind,*.rem^I^Isetf remind[J
+
+line 1323: [J
+
+line 1324: " Resolv.conf[J
+
+line 1325: au BufNewFile,BufRead resolv.conf^I^Isetf resolv[J
+
+line 1326: [J
+
+line 1327: " Relax NG Compact[J
+
+line 1328: au BufNewFile,BufRead *.rnc^I^I^Isetf rnc[J
+
+line 1329: [J
+
+line 1330: " Relax NG XML[J
+
+line 1331: au BufNewFile,BufRead *.rng^I^I^Isetf rng[J
+
+line 1332: [J
+
+line 1333: " RPL/2[J
+
+line 1334: au BufNewFile,BufRead *.rpl^I^I^Isetf rpl[J
+
+line 1335: [J
+
+line 1336: " Robots.txt[J
+
+line 1337: au BufNewFile,BufRead robots.txt^I^Isetf robots[J
+
+line 1338: [J
+
+line 1339: " Rpcgen[J
+
+line 1340: au BufNewFile,BufRead *.x^I^I^Isetf rpcgen[J
+
+line 1341: [J
+
+line 1342: " reStructuredText Documentation Format[J
+
+line 1343: au BufNewFile,BufRead *.rst^I^I^Isetf rst[J
+
+line 1344: [J
+
+line 1345: " RTF[J
+
+line 1346: au BufNewFile,BufRead *.rtf^I^I^Isetf rtf[J
+
+line 1347: [J
+
+line 1348: " Interactive Ruby shell[J
+
+line 1349: au BufNewFile,BufRead .irbrc,irbrc^I^Isetf ruby[J
+
+line 1350: [J
+
+line 1351: " Ruby[J
+
+line 1352: au BufNewFile,BufRead *.rb,*.rbw^I^Isetf ruby[J
+
+line 1353: [J
+
+line 1354: " RubyGems[J
+
+line 1355: au BufNewFile,BufRead *.gemspec^I^I^Isetf ruby[J
+
+line 1356: [J
+
+line 1357: " Rust[J
+
+line 1358: au BufNewFile,BufRead *.rs^I^I^Isetf rust[J
+
+line 1359: [J
+
+line 1360: " Rackup[J
+
+line 1361: au BufNewFile,BufRead *.ru^I^I^Isetf ruby[J
+
+line 1362: [J
+
+line 1363: " Bundler[J
+
+line 1364: au BufNewFile,BufRead Gemfile^I^I^Isetf ruby[J
+
+line 1365: [J
+
+line 1366: " Ruby on Rails[J
+
+line 1367: au BufNewFile,BufRead *.builder,*.rxml,*.rjs^Isetf ruby[J
+
+line 1368: [J
+
+line 1369: " Rantfile and Rakefile is like Ruby[J
+
+line 1370: au BufNewFile,BufRead [rR]antfile,*.rant,[rR]akefile,*.rake^Isetf ruby[J
+
+line 1371: [J
+
+line 1372: " S-lang (or shader language, or SmallLisp)[J
+
+line 1373: au BufNewFile,BufRead *.sl^I^I^Isetf slang[J
+
+line 1374: [J
+
+line 1375: " Samba config[J
+
+line 1376: au BufNewFile,BufRead smb.conf^I^I^Isetf samba[J
+
+line 1377: [J
+
+line 1378: " SAS script[J
+
+line 1379: au BufNewFile,BufRead *.sas^I^I^Isetf sas[J
+
+line 1380: [J
+
+line 1381: " Sass[J
+
+line 1382: au BufNewFile,BufRead *.sass^I^I^Isetf sass[J
+
+line 1383: [J
+
+line 1384: " Sather[J
+
+line 1385: au BufNewFile,BufRead *.sa^I^I^Isetf sather[J
+
+line 1386: [J
+
+line 1387: " Scala[J
+
+line 1388: au BufNewFile,BufRead *.scala^I^I^Isetf scala[J
+
+line 1389: [J
+
+line 1390: " SBT - Scala Build Tool[J
+
+line 1391: au BufNewFile,BufRead *.sbt^I^I^Isetf sbt[J
+
+line 1392: [J
+
+line 1393: " Scilab[J
+
+line 1394: au BufNewFile,BufRead *.sci,*.sce^I^Isetf scilab[J
+
+line 1395: [J
+
+line 1396: " SCSS[J
+
+line 1397: au BufNewFile,BufRead *.scss^I^I^Isetf scss[J
+
+line 1398: [J
+
+line 1399: " SD: Streaming Descriptors[J
+
+line 1400: au BufNewFile,BufRead *.sd^I^I^Isetf sd[J
+
+line 1401: [J
+
+line 1402: " SDL[J
+
+line 1403: au BufNewFile,BufRead *.sdl,*.pr^I^Isetf sdl[J
+
+line 1404: [J
+
+line 1405: " sed[J
+
+line 1406: au BufNewFile,BufRead *.sed^I^I^Isetf sed[J
+
+line 1407: [J
+
+line 1408: " Sieve (RFC 3028)[J
+
+line 1409: au BufNewFile,BufRead *.siv^I^I^Isetf sieve[J
+
+line 1410: [J
+
+line 1411: " Sendmail[J
+
+line 1412: au BufNewFile,BufRead sendmail.cf^I^Isetf sm[J
+
+line 1413: [J
+
+line 1414: " Sendmail .mc files are actually m4.  Could also be MS Message text file.[J
+
+line 1415: au BufNewFile,BufRead *.mc^I^I^Icall filetype#McSetf()[J
+
+line 1416: [J
+
+line 1417: " Services[J
+
+line 1418: au BufNewFile,BufRead */etc/services^I^Isetf services[J
+
+line 1419: [J
+
+line 1420: " Service Location config[J
+
+line 1421: au BufNewFile,BufRead */etc/slp.conf^I^Isetf slpconf[J
+
+line 1422: [J
+
+line 1423: " Service Location registration[J
+
+line 1424: au BufNewFile,BufRead */etc/slp.reg^I^Isetf slpreg[J
+
+line 1425: [J
+
+line 1426: " Service Location SPI[J
+
+line 1427: au BufNewFile,BufRead */etc/slp.spi^I^Isetf slpspi[J
+
+line 1428: [J
+
+line 1429: " Setserial config[J
+
+line 1430: au BufNewFile,BufRead */etc/serial.conf^I^Isetf setserial[J
+
+line 1431: [J
+
+line 1432: " SGML[J
+
+line 1442: au BufNewFile,BufRead *.sgm,*.sgml if getline(1).getline(2).getline(3).getline(4).getline(5) =~? 'linuxdoc' |   setf sgmllnx | elseif getline(1) =~ '<!DOCTYPE.*DocBook' || getline(2) =~ '<!DOCTYPE.*DocBook' |   let b:docbk_type = "sgml" |   let b:docbk_ver = 4 |   setf docbk | else |   setf sgml | endif[J
+
+line 1443: [J
+
+line 1444: " SGMLDECL[J
+
+line 1448: au BufNewFile,BufRead *.decl,*.dcl,*.dec if getline(1).getline(2).getline(3) =~? '^<!SGML' |    setf sgmldecl | endif[J
+
+line 1449: [J
+
+line 1450: " SGML catalog file[J
+
+line 1451: au BufNewFile,BufRead catalog^I^I^Isetf catalog[J
+
+line 1452: au BufNewFile,BufRead sgml.catalog*^I^Icall s:StarSetf('catalog')[J
+
+line 1453: [J
+
+line 1454: " Shell scripts (sh, ksh, bash, bash2, csh); Allow .profile_foo etc.[J
+
+line 1455: " Gentoo ebuilds and Arch Linux PKGBUILDs are actually bash scripts[J
+
+line 1456: au BufNewFile,BufRead .bashrc*,bashrc,bash.bashrc,.bash[_-]profile*,.bash[_-]logout*,.bash[_-]aliases*,*.bash,*/{,.}bash[_-]completion{,.d,.sh}{,/*},*.ebuild,*.eclass,PKGBUILD* call filetype#SetFileTypeSH("bash")[J
+
+line 1457: au BufNewFile,BufRead .kshrc*,*.ksh call filetype#SetFileTypeSH("ksh")[J
+
+line 1458: au BufNewFile,BufRead */etc/profile,.profile*,*.sh,*.env call filetype#SetFileTypeSH(getline(1))[J
+
+line 1459: [J
+
+line 1460: " Shell script (Arch Linux) or PHP file (Drupal)[J
+
+line 1466: au BufNewFile,BufRead *.install if getline(1) =~ '<?php' |   setf php | else |   call filetype#SetFileTypeSH("bash") | endif[J
+
+line 1467: [J
+
+line 1468: " tcsh scripts[J
+
+line 1469: au BufNewFile,BufRead .tcshrc*,*.tcsh,tcsh.tcshrc,tcsh.login^Icall filetype#SetFileTypeShell("tcsh")[J
+
+line 1470: [J
+
+line 1471: " csh scripts, but might also be tcsh scripts (on some systems csh is tcsh)[J
+
+line 1472: au BufNewFile,BufRead .login*,.cshrc*,csh.cshrc,csh.login,csh.logout,*.csh,.alias  call filetype#CSH()[J
+
+line 1473: [J
+
+line 1474: " Z-Shell script[J
+
+line 1475: au BufNewFile,BufRead .zprofile,*/etc/zprofile,.zfbfmarks  setf zsh[J
+
+line 1476: au BufNewFile,BufRead .zsh*,.zlog*,.zcompdump*  call s:StarSetf('zsh')[J
+
+line 1477: au BufNewFile,BufRead *.zsh^I^I^Isetf zsh[J
+
+line 1478: [J
+
+line 1479: " Scheme[J
+
+line 1480: au BufNewFile,BufRead *.scm,*.ss,*.rkt^I^Isetf scheme[J
+
+line 1481: [J
+
+line 1482: " Screen RC[J
+
+line 1483: au BufNewFile,BufRead .screenrc,screenrc^Isetf screen[J
+
+line 1484: [J
+
+line 1485: " Simula[J
+
+line 1486: au BufNewFile,BufRead *.sim^I^I^Isetf simula[J
+
+line 1487: [J
+
+line 1488: " SINDA[J
+
+line 1489: au BufNewFile,BufRead *.sin,*.s85^I^Isetf sinda[J
+
+line 1490: [J
+
+line 1491: " SiSU[J
+
+line 1492: au BufNewFile,BufRead *.sst,*.ssm,*.ssi,*.-sst,*._sst setf sisu[J
+
+line 1493: au BufNewFile,BufRead *.sst.meta,*.-sst.meta,*._sst.meta setf sisu[J
+
+line 1494: [J
+
+line 1495: " SKILL[J
+
+line 1496: au BufNewFile,BufRead *.il,*.ils,*.cdf^I^Isetf skill[J
+
+line 1497: [J
+
+line 1498: " SLRN[J
+
+line 1499: au BufNewFile,BufRead .slrnrc^I^I^Isetf slrnrc[J
+
+line 1500: au BufNewFile,BufRead *.score^I^I^Isetf slrnsc[J
+
+line 1501: [J
+
+line 1502: " Smalltalk (and TeX)[J
+
+line 1503: au BufNewFile,BufRead *.st^I^I^Isetf st[J
+
+line 1511: au BufNewFile,BufRead *.cls if getline(1) =~ '^%' |  setf tex | elseif getline(1)[0] == '#' && getline(1) =~ 'rexx' |  setf rexx | else |  setf st | endif[J
+
+line 1512: [J
+
+line 1513: " Smarty templates[J
+
+line 1514: au BufNewFile,BufRead *.tpl^I^I^Isetf smarty[J
+
+line 1515: [J
+
+line 1516: " SMIL or XML[J
+
+line 1522: au BufNewFile,BufRead *.smil if getline(1) =~ '<?\s*xml.*?>' |   setf xml | else |   setf smil | endif[J
+
+line 1523: [J
+
+line 1524: " SMIL or SNMP MIB file[J
+
+line 1530: au BufNewFile,BufRead *.smi if getline(1) =~ '\<smil\>' |   setf smil | else |   setf mib | endif[J
+
+line 1531: [J
+
+line 1532: " SMITH[J
+
+line 1533: au BufNewFile,BufRead *.smt,*.smith^I^Isetf smith[J
+
+line 1534: [J
+
+line 1535: " Snobol4 and spitbol[J
+
+line 1536: au BufNewFile,BufRead *.sno,*.spt^I^Isetf snobol4[J
+
+line 1537: [J
+
+line 1538: " SNMP MIB files[J
+
+line 1539: au BufNewFile,BufRead *.mib,*.my^I^Isetf mib[J
+
+line 1540: [J
+
+line 1541: " Snort Configuration[J
+
+line 1542: au BufNewFile,BufRead *.hog,snort.conf,vision.conf^Isetf hog[J
+
+line 1543: au BufNewFile,BufRead *.rules^I^I^Icall filetype#FTRules()[J
+
+line 1544: [J
+
+line 1545: " Spec (Linux RPM)[J
+
+line 1546: au BufNewFile,BufRead *.spec^I^I^Isetf spec[J
+
+line 1547: [J
+
+line 1548: " Speedup (AspenTech plant simulator)[J
+
+line 1549: au BufNewFile,BufRead *.speedup,*.spdata,*.spd^Isetf spup[J
+
+line 1550: [J
+
+line 1551: " Slice[J
+
+line 1552: au BufNewFile,BufRead *.ice^I^I^Isetf slice[J
+
+line 1553: [J
+
+line 1554: " Spice[J
+
+line 1555: au BufNewFile,BufRead *.sp,*.spice^I^Isetf spice[J
+
+line 1556: [J
+
+line 1557: " Spyce[J
+
+line 1558: au BufNewFile,BufRead *.spy,*.spi^I^Isetf spyce[J
+
+line 1559: [J
+
+line 1560: " Squid[J
+
+line 1561: au BufNewFile,BufRead squid.conf^I^Isetf squid[J
+
+line 1562: [J
+
+line 1563: " SQL for Oracle Designer[J
+
+line 1564: au BufNewFile,BufRead *.tyb,*.typ,*.tyc,*.pkb,*.pks^Isetf sql[J
+
+line 1565: [J
+
+line 1566: " SQL[J
+
+line 1567: au BufNewFile,BufRead *.sql^I^I^Icall filetype#SQL()[J
+
+line 1568: [J
+
+line 1569: " SQLJ[J
+
+line 1570: au BufNewFile,BufRead *.sqlj^I^I^Isetf sqlj[J
+
+line 1571: [J
+
+line 1572: " SQR[J
+
+line 1573: au BufNewFile,BufRead *.sqr,*.sqi^I^Isetf sqr[J
+
+line 1574: [J
+
+line 1575: " OpenSSH configuration[J
+
+line 1576: au BufNewFile,BufRead ssh_config,*/.ssh/config^Isetf sshconfig[J
+
+line 1577: [J
+
+line 1578: " OpenSSH server configuration[J
+
+line 1579: au BufNewFile,BufRead sshd_config^I^Isetf sshdconfig[J
+
+line 1580: [J
+
+line 1581: " Stata[J
+
+line 1582: au BufNewFile,BufRead *.ado,*.do,*.imata,*.mata^Isetf stata[J
+
+line 1583: " Also *.class, but not when it's a Java bytecode file[J
+
+line 1585: au BufNewFile,BufRead *.class if getline(1) !~ "^\xca\xfe\xba\xbe" | setf stata | endif[J
+
+line 1586: [J
+
+line 1587: " SMCL[J
+
+line 1588: au BufNewFile,BufRead *.hlp,*.ihlp,*.smcl^Isetf smcl[J
+
+line 1589: [J
+
+line 1590: " Stored Procedures[J
+
+line 1591: au BufNewFile,BufRead *.stp^I^I^Isetf stp[J
+
+line 1592: [J
+
+line 1593: " Standard ML[J
+
+line 1594: au BufNewFile,BufRead *.sml^I^I^Isetf sml[J
+
+line 1595: [J
+
+line 1596: " Sratus VOS command macro[J
+
+line 1597: au BufNewFile,BufRead *.cm^I^I^Isetf voscm[J
+
+line 1598: [J
+
+line 1599: " Sysctl[J
+
+line 1600: au BufNewFile,BufRead */etc/sysctl.conf,*/etc/sysctl.d/*.conf^Isetf sysctl[J
+
+line 1601: [J
+
+line 1602: " Systemd unit files[J
+
+line 1603: au BufNewFile,BufRead */systemd/*.{automount,mount,path,service,socket,swap,target,timer}^Isetf systemd[J
+
+line 1604: [J
+
+line 1605: " Synopsys Design Constraints[J
+
+line 1606: au BufNewFile,BufRead *.sdc^I^I^Isetf sdc[J
+
+line 1607: [J
+
+line 1608: " Sudoers[J
+
+line 1609: au BufNewFile,BufRead */etc/sudoers,sudoers.tmp^Isetf sudoers[J
+
+line 1610: [J
+
+line 1611: " SVG (Scalable Vector Graphics)[J
+
+line 1612: au BufNewFile,BufRead *.svg^I^I^Isetf svg[J
+
+line 1613: [J
+
+line 1614: " Tads (or Nroff or Perl test file)[J
+
+line 1616: au BufNewFile,BufRead *.t if !filetype#FTnroff() && !filetype#FTperl() | setf tads | endif[J
+
+line 1617: [J
+
+line 1618: " Tags[J
+
+line 1619: au BufNewFile,BufRead tags^I^I^Isetf tags[J
+
+line 1620: [J
+
+line 1621: " TAK[J
+
+line 1622: au BufNewFile,BufRead *.tak^I^I^Isetf tak[J
+
+line 1623: [J
+
+line 1624: " Task[J
+
+line 1625: au BufRead,BufNewFile {pending,completed,undo}.data  setf taskdata[J
+
+line 1626: au BufRead,BufNewFile *.task^I^I^Isetf taskedit[J
+
+line 1627: [J
+
+line 1628: " Tcl (JACL too)[J
+
+line 1629: au BufNewFile,BufRead *.tcl,*.tk,*.itcl,*.itk,*.jacl^Isetf tcl[J
+
+line 1630: [J
+
+line 1631: " TealInfo[J
+
+line 1632: au BufNewFile,BufRead *.tli^I^I^Isetf tli[J
+
+line 1633: [J
+
+line 1634: " Telix Salt[J
+
+line 1635: au BufNewFile,BufRead *.slt^I^I^Isetf tsalt[J
+
+line 1636: [J
+
+line 1637: " Tera Term Language[J
+
+line 1638: au BufRead,BufNewFile *.ttl^I^I^Isetf teraterm[J
+
+line 1639: [J
+
+line 1640: " Terminfo[J
+
+line 1641: au BufNewFile,BufRead *.ti^I^I^Isetf terminfo[J
+
+line 1642: [J
+
+line 1643: " TeX[J
+
+line 1644: au BufNewFile,BufRead *.latex,*.sty,*.dtx,*.ltx,*.bbl^Isetf tex[J
+
+line 1645: au BufNewFile,BufRead *.tex^I^I^Icall filetype#FTtex()[J
+
+line 1646: [J
+
+line 1647: " ConTeXt[J
+
+line 1648: au BufNewFile,BufRead *.mkii,*.mkiv,*.mkvi   setf context[J
+
+line 1649: [J
+
+line 1650: " Texinfo[J
+
+line 1651: au BufNewFile,BufRead *.texinfo,*.texi,*.txi^Isetf texinfo[J
+
+line 1652: [J
+
+line 1653: " TeX configuration[J
+
+line 1654: au BufNewFile,BufRead texmf.cnf^I^I^Isetf texmf[J
+
+line 1655: [J
+
+line 1656: " Tidy config[J
+
+line 1657: au BufNewFile,BufRead .tidyrc,tidyrc^I^Isetf tidy[J
+
+line 1658: [J
+
+line 1659: " TF mud client[J
+
+line 1660: au BufNewFile,BufRead *.tf,.tfrc,tfrc^I^Isetf tf[J
+
+line 1661: [J
+
+line 1662: " tmux configuration[J
+
+line 1663: au BufNewFile,BufRead {.,}tmux*.conf^I^Isetf tmux[J
+
+line 1664: [J
+
+line 1665: " TPP - Text Presentation Program[J
+
+line 1666: au BufNewFile,BufReadPost *.tpp^I^I^Isetf tpp[J
+
+line 1667: [J
+
+line 1668: " Treetop[J
+
+line 1669: au BufRead,BufNewFile *.treetop^I^I^Isetf treetop[J
+
+line 1670: [J
+
+line 1671: " Trustees[J
+
+line 1672: au BufNewFile,BufRead trustees.conf^I^Isetf trustees[J
+
+line 1673: [J
+
+line 1674: " TSS - Geometry[J
+
+line 1675: au BufNewFile,BufReadPost *.tssgm^I^Isetf tssgm[J
+
+line 1676: [J
+
+line 1677: " TSS - Optics[J
+
+line 1678: au BufNewFile,BufReadPost *.tssop^I^Isetf tssop[J
+
+line 1679: [J
+
+line 1680: " TSS - Command Line (temporary)[J
+
+line 1681: au BufNewFile,BufReadPost *.tsscl^I^Isetf tsscl[J
+
+line 1682: [J
+
+line 1683: " TWIG files[J
+
+line 1684: au BufNewFile,BufReadPost *.twig^I^Isetf twig[J
+
+line 1685: [J
+
+line 1686: " Motif UIT/UIL files[J
+
+line 1687: au BufNewFile,BufRead *.uit,*.uil^I^Isetf uil[J
+
+line 1688: [J
+
+line 1689: " Udev conf[J
+
+line 1690: au BufNewFile,BufRead */etc/udev/udev.conf^Isetf udevconf[J
+
+line 1691: [J
+
+line 1692: " Udev permissions[J
+
+line 1693: au BufNewFile,BufRead */etc/udev/permissions.d/*.permissions setf udevperm[J
+
+line 1694: "[J
+
+line 1695: " Udev symlinks config[J
+
+line 1696: au BufNewFile,BufRead */etc/udev/cdsymlinks.conf^Isetf sh[J
+
+line 1697: [J
+
+line 1698: " UnrealScript[J
+
+line 1699: au BufNewFile,BufRead *.uc^I^I^Isetf uc[J
+
+line 1700: [J
+
+line 1701: " Updatedb[J
+
+line 1702: au BufNewFile,BufRead */etc/updatedb.conf^Isetf updatedb[J
+
+line 1703: [J
+
+line 1704: " Upstart (init(8)) config files[J
+
+line 1705: au BufNewFile,BufRead */usr/share/upstart/*.conf^I       setf upstart[J
+
+line 1706: au BufNewFile,BufRead */usr/share/upstart/*.override^I       setf upstart[J
+
+line 1707: au BufNewFile,BufRead */etc/init/*.conf,*/etc/init/*.override  setf upstart[J
+
+line 1708: au BufNewFile,BufRead */.init/*.conf,*/.init/*.override^I       setf upstart[J
+
+line 1709: au BufNewFile,BufRead */.config/upstart/*.conf^I^I       setf upstart[J
+
+line 1710: au BufNewFile,BufRead */.config/upstart/*.override^I       setf upstart[J
+
+line 1711: [J
+
+line 1712: " Vera[J
+
+line 1713: au BufNewFile,BufRead *.vr,*.vri,*.vrh^I^Isetf vera[J
+
+line 1714: [J
+
+line 1715: " Verilog HDL[J
+
+line 1716: au BufNewFile,BufRead *.v^I^I^Isetf verilog[J
+
+line 1717: [J
+
+line 1718: " Verilog-AMS HDL[J
+
+line 1719: au BufNewFile,BufRead *.va,*.vams^I^Isetf verilogams[J
+
+line 1720: [J
+
+line 1721: " SystemVerilog[J
+
+line 1722: au BufNewFile,BufRead *.sv,*.svh^I^Isetf systemverilog[J
+
+line 1723: [J
+
+line 1724: " VHDL[J
+
+line 1725: au BufNewFile,BufRead *.hdl,*.vhd,*.vhdl,*.vbe,*.vst  setf vhdl[J
+
+line 1726: au BufNewFile,BufRead *.vhdl_[0-9]*^I^Icall s:StarSetf('vhdl')[J
+
+line 1727: [J
+
+line 1728: " Vim script[J
+
+line 1729: au BufNewFile,BufRead *.vim,*.vba,.exrc,_exrc^Isetf vim[J
+
+line 1730: [J
+
+line 1731: " Viminfo file[J
+
+line 1732: au BufNewFile,BufRead .viminfo,_viminfo^I^Isetf viminfo[J
+
+line 1733: [J
+
+line 1734: " Virata Config Script File or Drupal module[J
+
+line 1740: au BufRead,BufNewFile *.hw,*.module,*.pkg if getline(1) =~ '<?php' |   setf php | else |   setf virata | endif[J
+
+line 1741: [J
+
+line 1742: " Visual Basic (also uses *.bas) or FORM[J
+
+line 1743: au BufNewFile,BufRead *.frm^I^I^Icall filetype#FTVB("form")[J
+
+line 1744: [J
+
+line 1745: " SaxBasic is close to Visual Basic[J
+
+line 1746: au BufNewFile,BufRead *.sba^I^I^Isetf vb[J
+
+line 1747: [J
+
+line 1748: " Vgrindefs file[J
+
+line 1749: au BufNewFile,BufRead vgrindefs^I^I^Isetf vgrindefs[J
+
+line 1750: [J
+
+line 1751: " VRML V1.0c[J
+
+line 1752: au BufNewFile,BufRead *.wrl^I^I^Isetf vrml[J
+
+line 1753: [J
+
+line 1754: " Vroom (vim testing and executable documentation)[J
+
+line 1755: au BufNewFile,BufRead *.vroom^I^I^Isetf vroom[J
+
+line 1756: [J
+
+line 1757: " Webmacro[J
+
+line 1758: au BufNewFile,BufRead *.wm^I^I^Isetf webmacro[J
+
+line 1759: [J
+
+line 1760: " Wget config[J
+
+line 1761: au BufNewFile,BufRead .wgetrc,wgetrc^I^Isetf wget[J
+
+line 1762: [J
+
+line 1763: " Website MetaLanguage[J
+
+line 1764: au BufNewFile,BufRead *.wml^I^I^Isetf wml[J
+
+line 1765: [J
+
+line 1766: " Winbatch[J
+
+line 1767: au BufNewFile,BufRead *.wbt^I^I^Isetf winbatch[J
+
+line 1768: [J
+
+line 1769: " WSML[J
+
+line 1770: au BufNewFile,BufRead *.wsml^I^I^Isetf wsml[J
+
+line 1771: [J
+
+line 1772: " WPL[J
+
+line 1773: au BufNewFile,BufRead *.wpl^I^I^Isetf xml[J
+
+line 1774: [J
+
+line 1775: " WvDial[J
+
+line 1776: au BufNewFile,BufRead wvdial.conf,.wvdialrc^Isetf wvdial[J
+
+line 1777: [J
+
+line 1778: " CVS RC file[J
+
+line 1779: au BufNewFile,BufRead .cvsrc^I^I^Isetf cvsrc[J
+
+line 1780: [J
+
+line 1781: " CVS commit file[J
+
+line 1782: au BufNewFile,BufRead cvs\d\+^I^I^Isetf cvs[J
+
+line 1783: [J
+
+line 1784: " WEB (*.web is also used for Winbatch: Guess, based on expecting "%" comment[J
+
+line 1785: " lines in a WEB file).[J
+
+line 1791: au BufNewFile,BufRead *.web if getline(1)[0].getline(2)[0].getline(3)[0].getline(4)[0].getline(5)[0] =~ "%" |   setf web | else |   setf winbatch | endif[J
+
+line 1792: [J
+
+line 1793: " Windows Scripting Host and Windows Script Component[J
+
+line 1794: au BufNewFile,BufRead *.ws[fc]^I^I^Isetf wsh[J
+
+line 1795: [J
+
+line 1796: " XHTML[J
+
+line 1797: au BufNewFile,BufRead *.xhtml,*.xht^I^Isetf xhtml[J
+
+line 1798: [J
+
+line 1799: " X Pixmap (dynamically sets colors, use BufEnter to make it work better)[J
+
+line 1805: au BufEnter *.xpm if getline(1) =~ "XPM2" |   setf xpm2 | else |   setf xpm | endif[J
+
+line 1806: au BufEnter *.xpm2^I^I^I^Isetf xpm2[J
+
+line 1807: [J
+
+line 1808: " XFree86 config[J
+
+line 1813: au BufNewFile,BufRead XF86Config if getline(1) =~ '\<XConfigurator\>' |   let b:xf86conf_xfree86_version = 3 | endif | setf xf86conf[J
+
+line 1816: au BufNewFile,BufRead */xorg.conf.d/*.conf let b:xf86conf_xfree86_version = 4 | setf xf86conf[J
+
+line 1817: [J
+
+line 1818: " Xorg config[J
+
+line 1819: au BufNewFile,BufRead xorg.conf,xorg.conf-4^Ilet b:xf86conf_xfree86_version = 4 | setf xf86conf[J
+
+line 1820: [J
+
+line 1821: " Xinetd conf[J
+
+line 1822: au BufNewFile,BufRead */etc/xinetd.conf^I^Isetf xinetd[J
+
+line 1823: [J
+
+line 1824: " XS Perl extension interface language[J
+
+line 1825: au BufNewFile,BufRead *.xs^I^I^Isetf xs[J
+
+line 1826: [J
+
+line 1827: " X resources file[J
+
+line 1828: au BufNewFile,BufRead .Xdefaults,.Xpdefaults,.Xresources,xdm-config,*.ad setf xdefaults[J
+
+line 1829: [J
+
+line 1830: " Xmath[J
+
+line 1831: au BufNewFile,BufRead *.msc,*.msf^I^Isetf xmath[J
+
+line 1833: au BufNewFile,BufRead *.ms if !filetype#FTnroff() | setf xmath | endif[J
+
+line 1834: [J
+
+line 1835: " XML  specific variants: docbk and xbl[J
+
+line 1836: au BufNewFile,BufRead *.xml^I^I^Icall filetype#FTxml()[J
+
+line 1837: [J
+
+line 1838: " XMI (holding UML models) is also XML[J
+
+line 1839: au BufNewFile,BufRead *.xmi^I^I^Isetf xml[J
+
+line 1840: [J
+
+line 1841: " CSPROJ files are Visual Studio.NET's XML-based project config files[J
+
+line 1842: au BufNewFile,BufRead *.csproj,*.csproj.user^Isetf xml[J
+
+line 1843: [J
+
+line 1844: " Qt Linguist translation source and Qt User Interface Files are XML[J
+
+line 1845: au BufNewFile,BufRead *.ts,*.ui^I^I^Isetf xml[J
+
+line 1846: [J
+
+line 1847: " TPM's are RDF-based descriptions of TeX packages (Nikolai Weibull)[J
+
+line 1848: au BufNewFile,BufRead *.tpm^I^I^Isetf xml[J
+
+line 1849: [J
+
+line 1850: " Xdg menus[J
+
+line 1851: au BufNewFile,BufRead */etc/xdg/menus/*.menu^Isetf xml[J
+
+line 1852: [J
+
+line 1853: " ATI graphics driver configuration[J
+
+line 1854: au BufNewFile,BufRead fglrxrc^I^I^Isetf xml[J
+
+line 1855: [J
+
+line 1856: " XLIFF (XML Localisation Interchange File Format) is also XML[J
+
+line 1857: au BufNewFile,BufRead *.xlf^I^I^Isetf xml[J
+
+line 1858: au BufNewFile,BufRead *.xliff^I^I^Isetf xml[J
+
+line 1859: [J
+
+line 1860: " XML User Interface Language[J
+
+line 1861: au BufNewFile,BufRead *.xul^I^I^Isetf xml[J
+
+line 1862: [J
+
+line 1863: " X11 xmodmap (also see below)[J
+
+line 1864: au BufNewFile,BufRead *Xmodmap^I^I^Isetf xmodmap[J
+
+line 1865: [J
+
+line 1866: " Xquery[J
+
+line 1867: au BufNewFile,BufRead *.xq,*.xql,*.xqm,*.xquery,*.xqy^Isetf xquery[J
+
+line 1868: [J
+
+line 1869: " XSD[J
+
+line 1870: au BufNewFile,BufRead *.xsd^I^I^Isetf xsd[J
+
+line 1871: [J
+
+line 1872: " Xslt[J
+
+line 1873: au BufNewFile,BufRead *.xsl,*.xslt^I^Isetf xslt[J
+
+line 1874: [J
+
+line 1875: " Yacc[J
+
+line 1876: au BufNewFile,BufRead *.yy,*.yxx,*.y++^I^Isetf yacc[J
+
+line 1877: [J
+
+line 1878: " Yacc or racc[J
+
+line 1879: au BufNewFile,BufRead *.y^I^I^Icall filetype#FTy()[J
+
+line 1880: [J
+
+line 1881: " Yaml[J
+
+line 1882: au BufNewFile,BufRead *.yaml,*.yml^I^Isetf yaml[J
+
+line 1883: [J
+
+line 1884: " yum conf (close enough to dosini)[J
+
+line 1885: au BufNewFile,BufRead */etc/yum.conf^I^Isetf dosini[J
+
+line 1886: [J
+
+line 1887: " Zimbu[J
+
+line 1888: au BufNewFile,BufRead *.zu^I^I^Isetf zimbu[J
+
+line 1889: " Zimbu Templates[J
+
+line 1890: au BufNewFile,BufRead *.zut^I^I^Isetf zimbutempl[J
+
+line 1891: [J
+
+line 1892: " Zope[J
+
+line 1893: "   dtml (zope dynamic template markup language), pt (zope page template),[J
+
+line 1894: "   cpt (zope form controller page template)[J
+
+line 1895: au BufNewFile,BufRead *.dtml,*.pt,*.cpt^I^Icall filetype#FThtml()[J
+
+line 1896: "   zsql (zope sql method)[J
+
+line 1897: au BufNewFile,BufRead *.zsql^I^I^Icall filetype#SQL()[J
+
+line 1898: [J
+
+line 1899: " Z80 assembler asz80[J
+
+line 1900: au BufNewFile,BufRead *.z8a^I^I^Isetf z8a[J
+
+line 1901: [J
+
+line 1902: augroup END[J
+
+line 1903: [J
+
+line 1904: [J
+
+line 1905: " Source the user-specified filetype file, for backwards compatibility with[J
+
+line 1906: " Vim 5.x.[J
+
+line 1907: if exists("myfiletypefile") && filereadable(expand(myfiletypefile))[J
+
+line 1908:   execute "source " . myfiletypefile[J
+
+line 1909: endif[J
+
+line 1910: [J
+
+line 1911: [J
+
+line 1912: " Check for "*" after loading myfiletypefile, so that scripts.vim is only used[J
+
+line 1913: " when there are no matching file name extensions.[J
+
+line 1914: " Don't do this for compressed files.[J
+
+line 1915: augroup filetypedetect[J
+
+line 1918: au BufNewFile,BufRead * if !did_filetype() && expand("<amatch>") !~ g:ft_ignore_pat | runtime! scripts.vim | endif[J
+
+line 1919: au StdinReadPost * if !did_filetype() | runtime! scripts.vim | endif[J
+
+line 1920: [J
+
+line 1921: [J
+
+line 1922: " Extra checks for when no filetype has been detected now.  Mostly used for[J
+
+line 1923: " patterns that end in "*".  E.g., "zsh*" matches "zsh.vim", but that's a Vim[J
+
+line 1924: " script file.[J
+
+line 1925: " Most of these should call s:StarSetf() to avoid names ending in .gz and the[J
+
+line 1926: " like are used.[J
+
+line 1927: [J
+
+line 1928: " More Apache config files[J
+
+line 1929: au BufNewFile,BufRead access.conf*,apache.conf*,apache2.conf*,httpd.conf*,srm.conf*^Icall s:StarSetf('apache')[J
+
+line 1930: au BufNewFile,BufRead */etc/apache2/*.conf*,*/etc/apache2/conf.*/*,*/etc/apache2/mods-*/*,*/etc/apache2/sites-*/*,*/etc/httpd/conf.d/*.conf*^I^Icall s:StarSetf('apache')[J
+
+line 1931: [J
+
+line 1932: " Asterisk config file[J
+
+line 1933: au BufNewFile,BufRead *asterisk/*.conf*^I^Icall s:StarSetf('asterisk')[J
+
+line 1934: au BufNewFile,BufRead *asterisk*/*voicemail.conf* call s:StarSetf('asteriskvm')[J
+
+line 1935: [J
+
+line 1936: " Bazaar version control[J
+
+line 1937: au BufNewFile,BufRead bzr_log.*^I^I^Isetf bzr[J
+
+line 1938: [J
+
+line 1939: " Bazel build file[J
+
+line 1940: if !has("fname_case")[J
+
+line 1941:   au BufNewFile,BufRead BUILD^I^I^Isetf bzl[J
+
+line 1942: endif[J
+
+line 1943: [J
+
+line 1944: " BIND zone[J
+
+line 1945: au BufNewFile,BufRead */named/db.*,*/bind/db.*^Icall s:StarSetf('bindzone')[J
+
+line 1946: [J
+
+line 1947: " Calendar[J
+
+line 1950: au BufNewFile,BufRead */.calendar/*,*/share/calendar/*/calendar.*,*/share/calendar/calendar.*^I^I^I^I^Icall s:StarSetf('calendar')[J
+
+line 1951: [J
+
+line 1952: " Changelog[J
+
+line 1958: au BufNewFile,BufRead [cC]hange[lL]og* if getline(1) =~ '; urgency='|  call s:StarSetf('debchangelog')|else|  call s:StarSetf('changelog')|endif[J
+
+line 1959: [J
+
+line 1960: " Crontab[J
+
+line 1961: au BufNewFile,BufRead crontab,crontab.*,*/etc/cron.d/*^I^Icall s:StarSetf('crontab')[J
+
+line 1962: [J
+
+line 1963: " dnsmasq(8) configuration[J
+
+line 1964: au BufNewFile,BufRead */etc/dnsmasq.d/*^I^Icall s:StarSetf('dnsmasq')[J
+
+line 1965: [J
+
+line 1966: " Dracula[J
+
+line 1967: au BufNewFile,BufRead drac.*^I^I^Icall s:StarSetf('dracula')[J
+
+line 1968: [J
+
+line 1969: " Fvwm[J
+
+line 1970: au BufNewFile,BufRead */.fvwm/*^I^I^Icall s:StarSetf('fvwm')[J
+
+line 1972: au BufNewFile,BufRead *fvwmrc*,*fvwm95*.hook let b:fvwm_version = 1 | call s:StarSetf('fvwm')[J
+
+line 1978: au BufNewFile,BufRead *fvwm2rc* if expand("<afile>:e") == "m4"|  call s:StarSetf('fvwm2m4')|else|  let b:fvwm_version = 2 | call s:StarSetf('fvwm')|endif[J
+
+line 1979: [J
+
+line 1980: " Gedcom[J
+
+line 1981: au BufNewFile,BufRead */tmp/lltmp*^I^Icall s:StarSetf('gedcom')[J
+
+line 1982: [J
+
+line 1983: " GTK RC[J
+
+line 1984: au BufNewFile,BufRead .gtkrc*,gtkrc*^I^Icall s:StarSetf('gtkrc')[J
+
+line 1985: [J
+
+line 1986: " Jam[J
+
+line 1987: au BufNewFile,BufRead Prl*.*,JAM*.*^I^Icall s:StarSetf('jam')[J
+
+line 1988: [J
+
+line 1989: " Jargon[J
+
+line 1993: au! BufNewFile,BufRead *jarg* if getline(1).getline(2).getline(3).getline(4).getline(5) =~? 'THIS IS THE JARGON FILE'|  call s:StarSetf('jargon')|endif[J
+
+line 1994: [J
+
+line 1995: " Kconfig[J
+
+line 1996: au BufNewFile,BufRead Kconfig.*^I^I^Icall s:StarSetf('kconfig')[J
+
+line 1997: [J
+
+line 1998: " Lilo: Linux loader[J
+
+line 1999: au BufNewFile,BufRead lilo.conf*^I^Icall s:StarSetf('lilo')[J
+
+line 2000: [J
+
+line 2001: " Logcheck[J
+
+line 2002: au BufNewFile,BufRead */etc/logcheck/*.d*/*^Icall s:StarSetf('logcheck')[J
+
+line 2003: [J
+
+line 2004: " Makefile[J
+
+line 2005: au BufNewFile,BufRead [mM]akefile*^I^Icall s:StarSetf('make')[J
+
+line 2006: [J
+
+line 2007: " Ruby Makefile[J
+
+line 2008: au BufNewFile,BufRead [rR]akefile*^I^Icall s:StarSetf('ruby')[J
+
+line 2009: [J
+
+line 2010: " Mail (also matches muttrc.vim, so this is below the other checks)[J
+
+line 2011: au BufNewFile,BufRead {neo,}mutt[[:alnum:]._-]\\\{6\}^Isetf mail[J
+
+line 2012: [J
+
+line 2013: au BufNewFile,BufRead reportbug-*^I^Icall s:StarSetf('mail')[J
+
+line 2014: [J
+
+line 2015: " Modconf[J
+
+line 2019: au BufNewFile,BufRead */etc/modutils/* if executable(expand("<afile>")) != 1|  call s:StarSetf('modconf')|endif[J
+
+line 2020: au BufNewFile,BufRead */etc/modprobe.*^I^Icall s:StarSetf('modconf')[J
+
+line 2021: [J
+
+line 2022: " Mutt setup file[J
+
+line 2023: au BufNewFile,BufRead .mutt{ng,}rc*,*/.mutt{ng,}/mutt{ng,}rc*^Icall s:StarSetf('muttrc')[J
+
+line 2024: au BufNewFile,BufRead mutt{ng,}rc*,Mutt{ng,}rc*^I^Icall s:StarSetf('muttrc')[J
+
+line 2025: [J
+
+line 2026: " Neomutt setup file[J
+
+line 2027: au BufNewFile,BufRead .neomuttrc*,*/.neomutt/neomuttrc*^Icall s:StarSetf('neomuttrc')[J
+
+line 2028: au BufNewFile,BufRead neomuttrc*,Neomuttrc*^I^Icall s:StarSetf('neomuttrc')[J
+
+line 2029: [J
+
+line 2030: " Nroff macros[J
+
+line 2031: au BufNewFile,BufRead tmac.*^I^I^Icall s:StarSetf('nroff')[J
+
+line 2032: [J
+
+line 2033: " OpenBSD hostname.if[J
+
+line 2034: au BufNewFile,BufRead /etc/hostname.*^I^Icall s:StarSetf('config')[J
+
+line 2035: [J
+
+line 2036: " Pam conf[J
+
+line 2037: au BufNewFile,BufRead */etc/pam.d/*^I^Icall s:StarSetf('pamconf')[J
+
+line 2038: [J
+
+line 2039: " Printcap and Termcap[J
+
+line 2043: au BufNewFile,BufRead *printcap* if !did_filetype()|  let b:ptcap_type = "print" | call s:StarSetf('ptcap')|endif[J
+
+line 2047: au BufNewFile,BufRead *termcap* if !did_filetype()|  let b:ptcap_type = "term" | call s:StarSetf('ptcap')|endif[J
+
+line 2048: [J
+
+line 2049: " ReDIF[J
+
+line 2050: " Only used when the .rdf file was not detected to be XML.[J
+
+line 2051: au BufRead,BufNewFile *.rdf^I^I^Icall filetype#Redif()[J
+
+line 2052: [J
+
+line 2053: " Remind[J
+
+line 2054: au BufNewFile,BufRead .reminders*^I^Icall s:StarSetf('remind')[J
+
+line 2055: [J
+
+line 2056: " Vim script[J
+
+line 2057: au BufNewFile,BufRead *vimrc*^I^I^Icall s:StarSetf('vim')[J
+
+line 2058: [J
+
+line 2059: " Subversion commit file[J
+
+line 2060: au BufNewFile,BufRead svn-commit*.tmp^I^Isetf svn[J
+
+line 2061: [J
+
+line 2062: " X resources file[J
+
+line 2063: au BufNewFile,BufRead Xresources*,*/app-defaults/*,*/Xresources/* call s:StarSetf('xdefaults')[J
+
+line 2064: [J
+
+line 2065: " XFree86 config[J
+
+line 2067: au BufNewFile,BufRead XF86Config-4* let b:xf86conf_xfree86_version = 4 | call s:StarSetf('xf86conf')[J
+
+line 2072: au BufNewFile,BufRead XF86Config* if getline(1) =~ '\<XConfigurator\>'|  let b:xf86conf_xfree86_version = 3|endif|call s:StarSetf('xf86conf')[J
+
+line 2073: [J
+
+line 2074: " X11 xmodmap[J
+
+line 2075: au BufNewFile,BufRead *xmodmap*^I^I^Icall s:StarSetf('xmodmap')[J
+
+line 2076: [J
+
+line 2077: " Xinetd conf[J
+
+line 2078: au BufNewFile,BufRead */etc/xinetd.d/*^I^Icall s:StarSetf('xinetd')[J
+
+line 2079: [J
+
+line 2080: " yum conf (close enough to dosini)[J
+
+line 2081: au BufNewFile,BufRead */etc/yum.repos.d/*^Icall s:StarSetf('dosini')[J
+
+line 2082: [J
+
+line 2083: " Z-Shell script[J
+
+line 2084: au BufNewFile,BufRead zsh*,zlog*^I^Icall s:StarSetf('zsh')[J
+
+line 2085: [J
+
+line 2086: [J
+
+line 2087: " Plain text files, needs to be far down to not override others.  This avoids[J
+
+line 2088: " the "conf" type being used if there is a line starting with '#'.[J
+
+line 2089: au BufNewFile,BufRead *.text,README^I^Isetf text[J
+
+line 2090: [J
+
+line 2091: " Help files match *.txt but should have a last line that is a modeline.[J
+
+line 2095: au BufNewFile,BufRead *.txt^I  if getline('$') !~ 'vim:.*ft=help'|   setf text| endif[J
+
+line 2096: [J
+
+line 2097: [J
+
+line 2098: " Use the filetype detect plugins.  They may overrule any of the previously[J
+
+line 2099: " detected filetypes.[J
+
+line 2100: runtime! ftdetect/*.vim[J
+
+Searching for "ftdetect/*.vim" in "/Users/jzhu/.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,/Users/jzhu/.vim/after"[J
+Searching for "/Users/jzhu/.vim/ftdetect/*.vim"[J
+Searching for "/usr/share/vim/vimfiles/ftdetect/*.vim"[J
+Searching for "/usr/share/vim/vim80/ftdetect/*.vim"[J
+Searching for "/usr/share/vim/vimfiles/after/ftdetect/*.vim"[J
+Searching for "/Users/jzhu/.vim/after/ftdetect/*.vim"[J
+not found in 'runtimepath': "ftdetect/*.vim"[J
+line 2101: [J
+
+line 2102: " NOTE: The above command could have ended the filetypedetect autocmd group[J
+
+line 2103: " and started another one. Let's make sure it has ended to get to a consistent[J
+
+line 2104: " state.[J
+
+line 2105: augroup END[J
+
+line 2106: [J
+
+line 2107: " Generic configuration file. Use FALLBACK, it's just guessing![J
+
+line 2113: au filetypedetect BufNewFile,BufRead,StdinReadPost * if !did_filetype() && expand("<amatch>") !~ g:ft_ignore_pat    && (getline(1) =~ '^#' || getline(2) =~ '^#' || getline(3) =~ '^#'^I|| getline(4) =~ '^#' || getline(5) =~ '^#') |   setf FALLBACK conf | endif[J
+
+line 2114: [J
+
+line 2115: [J
+
+line 2116: " If the GUI is already running, may still need to install the Syntax menu.[J
+
+line 2117: " Don't do it when the 'M' flag is included in 'guioptions'.[J
+
+line 2119: if has("menu") && has("gui_running") && !exists("did_install_syntax_menu") && &guioptions !~# "M"[J
+
+line 2120:   source <sfile>:p:h/menu.vim[J
+
+line 2121: endif[J
+
+line 2122: [J
+
+line 2123: " Function called for testing all functions defined here.  These are[J
+
+line 2124: " script-local, thus need to be executed here.[J
+
+line 2125: " Returns a string with error messages (hopefully empty).[J
+
+line 2126: func! TestFiletypeFuncs(testlist)[J
+
+line 2137: [J
+
+line 2138: " Restore 'cpoptions'[J
+
+line 2139: let &cpo = s:cpo_save[J
+
+line 2140: unlet s:cpo_save[J
+
+finished sourcing /usr/share/vim/vim80/filetype.vim[J
+continuing in /Users/jzhu/.vimrc[J
+Searching for "/usr/share/vim/vimfiles/after/filetype.vim"[J
+Searching for "/Users/jzhu/.vim/after/filetype.vim"[J
+Searching for "indent.vim" in "/Users/jzhu/.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,/Users/jzhu/.vim/after"[J
+Searching for "/Users/jzhu/.vim/indent.vim"[J
+Searching for "/usr/share/vim/vimfiles/indent.vim"[J
+Searching for "/usr/share/vim/vim80/indent.vim"[J
+chdir(/usr/share/vim/vim80)[J
+fchdir() to previous dir[J
+line 6: sourcing "/usr/share/vim/vim80/indent.vim"[J
+line 1: " Vim support file to switch on loading indent files for file types[J
+
+line 2: "[J
+
+line 3: " Maintainer:^IBram Moolenaar <Bram@vim.org>[J
+
+line 4: " Last Change:^I2008 Feb 22[J
+
+line 5: [J
+
+line 6: if exists("did_indent_on")[J
+
+line 7:   finish[J
+
+line 8: endif[J
+
+line 9: let did_indent_on = 1[J
+
+line 10: [J
+
+line 11: augroup filetypeindent[J
+
+line 12:   au FileType * call s:LoadIndent()[J
+
+line 13:   func! s:LoadIndent()[J
+
+line 31: augroup END[J
+
+finished sourcing /usr/share/vim/vim80/indent.vim[J
+continuing in /Users/jzhu/.vimrc[J
+Searching for "/usr/share/vim/vimfiles/after/indent.vim"[J
+Searching for "/Users/jzhu/.vim/after/indent.vim"[J
+line 7: set wildmenu[J
+
+line 8: set incsearch[J
+
+line 9: set hlsearch[J
+
+line 10: nnoremap <leader>Msoace[J
+
+No mapping found[J
+line 11: set tabstop=4[J
+
+line 12: set softtabstop=4[J
+
+line 13: set expandtab[J
+
+line 14: [J
+
+line 15: set foldenable[J
+
+line 16: set foldlevelstart=10[J
+
+line 17: [J
+
+line 18: " Toggling shortcuts[J
+
+line 19: inoremap jk <esc>[J
+
+finished sourcing $HOME/.vimrc[J
+Searching for "pack/*/start/*" in "/Users/jzhu/.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,/Users/jzhu/.vim/after"[J
+Searching for "/Users/jzhu/.vim/pack/*/start/*"[J
+Searching for "/usr/share/vim/vimfiles/pack/*/start/*"[J
+Searching for "/usr/share/vim/vim80/pack/*/start/*"[J
+Searching for "/usr/share/vim/vimfiles/after/pack/*/start/*"[J
+Searching for "/Users/jzhu/.vim/after/pack/*/start/*"[J
+not found in 'packpath': "pack/*/start/*"[J
+Searching for "plugin/**/*.vim" in "/Users/jzhu/.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,/Users/jzhu/.vim/after"[J
+Searching for "/Users/jzhu/.vim/plugin/**/*.vim"[J
+Searching for "/usr/share/vim/vimfiles/plugin/**/*.vim"[J
+Searching for "/usr/share/vim/vim80/plugin/**/*.vim"[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/getscriptPlugin.vim"[J
+line 1: " ---------------------------------------------------------------------[J
+
+line 2: " getscriptPlugin.vim[J
+
+line 3: "  Author:^ICharles E. Campbell[J
+
+line 4: "  Date:^INov 29, 2013[J
+
+line 5: "  Installing:^I:help glvs-install[J
+
+line 6: "  Usage:^I:help glvs[J
+
+line 7: "[J
+
+line 8: " GetLatestVimScripts: 642 1 :AutoInstall: getscript.vim[J
+
+line 9: "[J
+
+line 10: " (Rom 15:11 WEB) Again, "Praise the Lord, all you Gentiles!  Let[J
+
+line 11: " all the peoples praise Him."[J
+
+line 12: " ---------------------------------------------------------------------[J
+
+line 13: " Initialization:^I{{{1[J
+
+line 14: " if you're sourcing this file, surely you can't be[J
+
+line 15: " expecting vim to be in its vi-compatible mode[J
+
+line 16: if exists("g:loaded_getscriptPlugin")[J
+
+line 17:  finish[J
+
+line 18: endif[J
+
+line 19: if &cp[J
+
+line 20:  if &verbose[J
+
+line 21:   echo "GetLatestVimScripts is not vi-compatible; not loaded (you need to set nocp)"[J
+
+line 22:  endif[J
+
+line 23:  finish[J
+
+line 24: endif[J
+
+line 25: let g:loaded_getscriptPlugin = "v36"[J
+
+line 26: let s:keepcpo                = &cpo[J
+
+line 27: set cpo&vim[J
+
+line 28: [J
+
+line 29: " ---------------------------------------------------------------------[J
+
+line 30: "  Public Interface: {{{1[J
+
+line 31: com!        -nargs=0 GetLatestVimScripts call getscript#GetLatestVimScripts()[J
+
+line 32: com!        -nargs=0 GetScripts          call getscript#GetLatestVimScripts()[J
+
+line 33: silent! com -nargs=0 GLVS                call getscript#GetLatestVimScripts()[J
+
+line 34: [J
+
+line 35: " ---------------------------------------------------------------------[J
+
+line 36: " Restore Options: {{{1[J
+
+line 37: let &cpo= s:keepcpo[J
+
+line 38: unlet s:keepcpo[J
+
+line 39: [J
+
+line 40: " ---------------------------------------------------------------------[J
+
+line 41: " vim: ts=8 sts=2 fdm=marker nowrap[J
+
+finished sourcing /usr/share/vim/vim80/plugin/getscriptPlugin.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/gzip.vim"[J
+line 1: " Vim plugin for editing compressed files.[J
+
+line 2: " Maintainer: Bram Moolenaar <Bram@vim.org>[J
+
+line 3: " Last Change: 2016 Oct 30[J
+
+line 4: [J
+
+line 5: " Exit quickly when:[J
+
+line 6: " - this plugin was already loaded[J
+
+line 7: " - when 'compatible' is set[J
+
+line 8: " - some autocommands are already taking care of compressed files[J
+
+line 9: if exists("loaded_gzip") || &cp || exists("#BufReadPre#*.gz")[J
+
+line 10:   finish[J
+
+line 11: endif[J
+
+line 12: let loaded_gzip = 1[J
+
+line 13: [J
+
+line 14: augroup gzip[J
+
+line 15:   " Remove all gzip autocommands[J
+
+line 16:   au![J
+
+line 17: [J
+
+line 18:   " Enable editing of gzipped files.[J
+
+line 19:   " The functions are defined in autoload/gzip.vim.[J
+
+line 20:   "[J
+
+line 21:   " Set binary mode before reading the file.[J
+
+line 22:   " Use "gzip -d", gunzip isn't always available.[J
+
+line 23:   autocmd BufReadPre,FileReadPre^I*.gz,*.bz2,*.Z,*.lzma,*.xz,*.lz,*.zst setlocal bin[J
+
+line 24:   autocmd BufReadPost,FileReadPost^I*.gz  call gzip#read("gzip -dn")[J
+
+line 25:   autocmd BufReadPost,FileReadPost^I*.bz2 call gzip#read("bzip2 -d")[J
+
+line 26:   autocmd BufReadPost,FileReadPost^I*.Z   call gzip#read("uncompress")[J
+
+line 27:   autocmd BufReadPost,FileReadPost^I*.lzma call gzip#read("lzma -d")[J
+
+line 28:   autocmd BufReadPost,FileReadPost^I*.xz  call gzip#read("xz -d")[J
+
+line 29:   autocmd BufReadPost,FileReadPost^I*.lz  call gzip#read("lzip -d")[J
+
+line 30:   autocmd BufReadPost,FileReadPost^I*.zst call gzip#read("zstd -d --rm")[J
+
+line 31:   autocmd BufWritePost,FileWritePost^I*.gz  call gzip#write("gzip")[J
+
+line 32:   autocmd BufWritePost,FileWritePost^I*.bz2 call gzip#write("bzip2")[J
+
+line 33:   autocmd BufWritePost,FileWritePost^I*.Z   call gzip#write("compress -f")[J
+
+line 34:   autocmd BufWritePost,FileWritePost^I*.lzma call gzip#write("lzma -z")[J
+
+line 35:   autocmd BufWritePost,FileWritePost^I*.xz  call gzip#write("xz -z")[J
+
+line 36:   autocmd BufWritePost,FileWritePost^I*.lz  call gzip#write("lzip")[J
+
+line 37:   autocmd BufWritePost,FileWritePost^I*.zst  call gzip#write("zstd --rm")[J
+
+line 38:   autocmd FileAppendPre^I^I^I*.gz  call gzip#appre("gzip -dn")[J
+
+line 39:   autocmd FileAppendPre^I^I^I*.bz2 call gzip#appre("bzip2 -d")[J
+
+line 40:   autocmd FileAppendPre^I^I^I*.Z   call gzip#appre("uncompress")[J
+
+line 41:   autocmd FileAppendPre^I^I^I*.lzma call gzip#appre("lzma -d")[J
+
+line 42:   autocmd FileAppendPre^I^I^I*.xz   call gzip#appre("xz -d")[J
+
+line 43:   autocmd FileAppendPre^I^I^I*.lz   call gzip#appre("lzip -d")[J
+
+line 44:   autocmd FileAppendPre^I^I^I*.zst call gzip#appre("zstd -d --rm")[J
+
+line 45:   autocmd FileAppendPost^I^I*.gz  call gzip#write("gzip")[J
+
+line 46:   autocmd FileAppendPost^I^I*.bz2 call gzip#write("bzip2")[J
+
+line 47:   autocmd FileAppendPost^I^I*.Z   call gzip#write("compress -f")[J
+
+line 48:   autocmd FileAppendPost^I^I*.lzma call gzip#write("lzma -z")[J
+
+line 49:   autocmd FileAppendPost^I^I*.xz call gzip#write("xz -z")[J
+
+line 50:   autocmd FileAppendPost^I^I*.lz call gzip#write("lzip")[J
+
+line 51:   autocmd FileAppendPost^I^I*.zst call gzip#write("zstd --rm")[J
+
+line 52: augroup END[J
+
+finished sourcing /usr/share/vim/vim80/plugin/gzip.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/logiPat.vim"[J
+line 1: " LogiPat: Boolean logical pattern matcher[J
+
+line 2: "   Author:  Charles E. Campbell[J
+
+line 3: "   Date:    Apr 04, 2016[J
+
+line 4: "   Version: 4[J
+
+line 5: "   Purpose: to do Boolean-logic based regular expression pattern matching[J
+
+line 6: " Copyright:    Copyright (C) 1999-2011 Charles E. Campbell {{{1[J
+
+line 7: "               Permission is hereby granted to use and distribute this code,[J
+
+line 8: "               with or without modifications, provided that this copyright[J
+
+line 9: "               notice is copied with it. Like most anything else that's free,[J
+
+line 10: "               LogiPat.vim is provided *as is* and comes with no warranty[J
+
+line 11: "               of any kind, either expressed or implied. By using this[J
+
+line 12: "               plugin, you agree that in no event will the copyright[J
+
+line 13: "               holder be liable for any damages resulting from the use[J
+
+line 14: "               of this software.[J
+
+line 15: "[J
+
+line 16: "   Usage: {{{1[J
+
+line 17: "       :LogiPat ...[J
+
+line 18: "[J
+
+line 19: "         Boolean logic supported:[J
+
+line 20: "            () grouping operators[J
+
+line 21: "            !  not the following pattern[J
+
+line 22: "            |  logical or[J
+
+line 23: "            &  logical and[J
+
+line 24: "            "..pattern.."[J
+
+line 25: "^IExample: {{{1[J
+
+line 26: "^I^I:LogiPat !("january"|"february")[J
+
+line 27: "^I^I  would match all strings not containing the strings january[J
+
+line 28: "^I^I  or february[J
+
+line 29: "^IGetLatestVimScripts: 1290 1 :AutoInstall: LogiPat.vim[J
+
+line 30: "[J
+
+line 31: "  Behold, you will conceive in your womb, and bring forth a son, {{{1[J
+
+line 32: "  and will call his name Jesus. He will be great, and will be[J
+
+line 33: "  called the Son of the Most High. The Lord God will give him the[J
+
+line 34: "  throne of his father, David, and he will reign over the house of[J
+
+line 35: "  Jacob forever. There will be no end to his kingdom. (Luke 1:31-33 WEB)[J
+
+line 36: [J
+
+line 37: " ---------------------------------------------------------------------[J
+
+line 38: " Load Once: {{{1[J
+
+line 39: if &cp || exists("loaded_logiPat")[J
+
+line 40:  finish[J
+
+line 41: endif[J
+
+line 42: let g:loaded_logiPat = "v4"[J
+
+line 43: let s:keepcpo        = &cpo[J
+
+line 44: set cpo&vim[J
+
+line 45: "DechoRemOn[J
+
+line 46: [J
+
+line 47: " ---------------------------------------------------------------------[J
+
+line 48: " Public Interface: {{{1[J
+
+line 49: com!     -nargs=* LogiPat^I^Icall   LogiPat(<q-args>,1)[J
+
+line 50: sil! com -nargs=* LP^I^I^Icall   LogiPat(<q-args>,1)[J
+
+line 51: sil! com -nargs=* LPR^I^I^Icall   LogiPat(<q-args>,1,"r")[J
+
+line 52: com!     -nargs=+ LPE^I^I^Iechomsg LogiPat(<q-args>)[J
+
+line 53: com!     -nargs=+ LogiPatFlags^Ilet  s:LogiPatFlags="<args>"[J
+
+line 54: sil! com -nargs=+ LPF^I^I^Ilet  s:LogiPatFlags="<args>"[J
+
+line 55: [J
+
+line 56: " =====================================================================[J
+
+line 57: " Functions: {{{1[J
+
+line 58: [J
+
+line 59: " ---------------------------------------------------------------------[J
+
+line 60: " LogiPat: this function interprets the boolean-logic pattern {{{2[J
+
+line 61: fun! LogiPat(pat,...)[J
+
+line 146: [J
+
+line 147: " ---------------------------------------------------------------------[J
+
+line 148: " s:String: Vim6.4 doesn't have string() {{{2[J
+
+line 149: func! s:String(str)[J
+
+line 152: [J
+
+line 153: " ---------------------------------------------------------------------[J
+
+line 154: " LP_PatPush: {{{2[J
+
+line 155: fun! s:LP_PatPush(pat)[J
+
+line 162: [J
+
+line 163: " ---------------------------------------------------------------------[J
+
+line 164: " LP_PatPop: pop a number/variable from LogiPat's pattern stack {{{2[J
+
+line 165: fun! s:LP_PatPop(lookup)[J
+
+line 178: [J
+
+line 179: " ---------------------------------------------------------------------[J
+
+line 180: " LP_OpPush: {{{2[J
+
+line 181: fun! s:LP_OpPush(op)[J
+
+line 232: [J
+
+line 233: " ---------------------------------------------------------------------[J
+
+line 234: " LP_Execute: execute operators from opstack using pattern stack {{{2[J
+
+line 235: fun! s:LP_Execute(preclvl)[J
+
+line 265: [J
+
+line 266: " ---------------------------------------------------------------------[J
+
+line 267: " LP_Not: writes a logical-not for a pattern {{{2[J
+
+line 268: fun! s:LP_Not(pat)[J
+
+line 279: [J
+
+line 280: " ---------------------------------------------------------------------[J
+
+line 281: " LP_Or: writes a logical-or branch using two patterns {{{2[J
+
+line 282: fun! s:LP_Or(pat1,pat2)[J
+
+line 288: [J
+
+line 289: " ---------------------------------------------------------------------[J
+
+line 290: " LP_And: writes a logical-and concat using two patterns {{{2[J
+
+line 291: fun! s:LP_And(pat1,pat2)[J
+
+line 297: [J
+
+line 298: " ---------------------------------------------------------------------[J
+
+line 299: " StackLook: {{{2[J
+
+line 300: fun! s:StackLook(description)[J
+
+line 334: [J
+
+line 335: " ---------------------------------------------------------------------[J
+
+line 336: "  Cleanup And Modeline: {{{1[J
+
+line 337: let &cpo= s:keepcpo[J
+
+line 338: unlet s:keepcpo[J
+
+line 339: " vim: ts=4 fdm=marker[J
+
+finished sourcing /usr/share/vim/vim80/plugin/logiPat.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/manpager.vim"[J
+line 1: " Vim plugin for using Vim as manpager.[J
+
+line 2: " Maintainer: Enno Nagel <ennonagel+vim@gmail.com>[J
+
+line 3: " Last Change: 2016 May 20[J
+
+line 4: [J
+
+line 5: " $MAN_PN is supposed to be set by MANPAGER, see ":help manpager.vim".[J
+
+line 6: if empty($MAN_PN)[J
+
+line 7:   finish[J
+
+finished sourcing /usr/share/vim/vim80/plugin/manpager.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/matchparen.vim"[J
+line 1: " Vim plugin for showing matching parens[J
+
+line 2: " Maintainer:  Bram Moolenaar <Bram@vim.org>[J
+
+line 3: " Last Change: 2017 Sep 30[J
+
+line 4: [J
+
+line 5: " Exit quickly when:[J
+
+line 6: " - this plugin was already loaded (or disabled)[J
+
+line 7: " - when 'compatible' is set[J
+
+line 8: " - the "CursorMoved" autocmd event is not available.[J
+
+line 9: if exists("g:loaded_matchparen") || &cp || !exists("##CursorMoved")[J
+
+line 10:   finish[J
+
+line 11: endif[J
+
+line 12: let g:loaded_matchparen = 1[J
+
+line 13: [J
+
+line 14: if !exists("g:matchparen_timeout")[J
+
+line 15:   let g:matchparen_timeout = 300[J
+
+line 16: endif[J
+
+line 17: if !exists("g:matchparen_insert_timeout")[J
+
+line 18:   let g:matchparen_insert_timeout = 60[J
+
+line 19: endif[J
+
+line 20: [J
+
+line 21: augroup matchparen[J
+
+line 22:   " Replace all matchparen autocommands[J
+
+line 23:   autocmd! CursorMoved,CursorMovedI,WinEnter * call s:Highlight_Matching_Pair()[J
+
+line 24:   if exists('##TextChanged')[J
+
+line 25:     autocmd! TextChanged,TextChangedI * call s:Highlight_Matching_Pair()[J
+
+line 26:   endif[J
+
+line 27: augroup END[J
+
+line 28: [J
+
+line 29: " Skip the rest if it was already done.[J
+
+line 30: if exists("*s:Highlight_Matching_Pair")[J
+
+line 31:   finish[J
+
+line 32: endif[J
+
+line 33: [J
+
+line 34: let s:cpo_save = &cpo[J
+
+line 35: set cpo-=C[J
+
+line 36: [J
+
+line 37: " The function that is invoked (very often) to define a ":match" highlighting[J
+
+line 38: " for any matching paren.[J
+
+line 39: function! s:Highlight_Matching_Pair()[J
+
+line 187: [J
+
+line 188: " Define commands that will disable and enable the plugin.[J
+
+line 189: command! DoMatchParen call s:DoMatchParen()[J
+
+line 190: command! NoMatchParen call s:NoMatchParen()[J
+
+line 191: [J
+
+line 192: func! s:NoMatchParen()[J
+
+line 199: [J
+
+line 200: func! s:DoMatchParen()[J
+
+line 206: [J
+
+line 207: let &cpo = s:cpo_save[J
+
+line 208: unlet s:cpo_save[J
+
+finished sourcing /usr/share/vim/vim80/plugin/matchparen.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/netrwPlugin.vim"[J
+line 1: " netrwPlugin.vim: Handles file transfer and remote directory listing across a network[J
+
+line 2: "            PLUGIN SECTION[J
+
+line 3: " Date:^I^IFeb 08, 2016[J
+
+line 4: " Maintainer:^ICharles E Campbell <NdrOchip@ScampbellPfamily.AbizM-NOSPAM>[J
+
+line 5: " GetLatestVimScripts: 1075 1 :AutoInstall: netrw.vim[J
+
+line 6: " Copyright:    Copyright (C) 1999-2013 Charles E. Campbell {{{1[J
+
+line 7: "               Permission is hereby granted to use and distribute this code,[J
+
+line 8: "               with or without modifications, provided that this copyright[J
+
+line 9: "               notice is copied with it. Like anything else that's free,[J
+
+line 10: "               netrw.vim, netrwPlugin.vim, and netrwSettings.vim are provided[J
+
+line 11: "               *as is* and comes with no warranty of any kind, either[J
+
+line 12: "               expressed or implied. By using this plugin, you agree that[J
+
+line 13: "               in no event will the copyright holder be liable for any damages[J
+
+line 14: "               resulting from the use of this software.[J
+
+line 15: "[J
+
+line 16: "  But be doers of the Word, and not only hearers, deluding your own selves {{{1[J
+
+line 17: "  (James 1:22 RSV)[J
+
+line 18: " =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-[J
+
+line 19: " Load Once: {{{1[J
+
+line 20: if &cp || exists("g:loaded_netrwPlugin")[J
+
+line 21:  finish[J
+
+line 22: endif[J
+
+line 23: let g:loaded_netrwPlugin = "v162"[J
+
+line 24: let s:keepcpo = &cpo[J
+
+line 25: set cpo&vim[J
+
+line 26: "DechoRemOn[J
+
+line 27: [J
+
+line 28: " ---------------------------------------------------------------------[J
+
+line 29: " Public Interface: {{{1[J
+
+line 30: [J
+
+line 31: " Local Browsing Autocmds: {{{2[J
+
+line 32: augroup FileExplorer[J
+
+line 33:  au![J
+
+line 34:  au BufLeave *  if &ft != "netrw"|let w:netrw_prvfile= expand("%:p")|endif[J
+
+line 35:  au BufEnter *^Isil call s:LocalBrowse(expand("<amatch>"))[J
+
+line 36:  au VimEnter *^Isil call s:VimEnter(expand("<amatch>"))[J
+
+line 37:  if has("win32") || has("win95") || has("win64") || has("win16")[J
+
+line 38:   au BufEnter .* sil call s:LocalBrowse(expand("<amatch>"))[J
+
+line 39:  endif[J
+
+line 40: augroup END[J
+
+line 41: [J
+
+line 42: " Network Browsing Reading Writing: {{{2[J
+
+line 43: augroup Network[J
+
+line 44:  au![J
+
+line 45:  au BufReadCmd   file://*^I^I^I^I^I^I^I^I^I^I^Icall netrw#FileUrlEdit(expand("<amatch>"))[J
+
+line 46:  au BufReadCmd   ftp://*,rcp://*,scp://*,http://*,https://*,dav://*,davs://*,rsync://*,sftp://*^Iexe "sil doau BufReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(2,expand("<amatch>"))|exe "sil doau BufReadPost ".fnameescape(expand("<amatch>"))[J
+
+line 47:  au FileReadCmd  ftp://*,rcp://*,scp://*,http://*,file://*,https://*,dav://*,davs://*,rsync://*,sftp://*^Iexe "sil doau FileReadPre ".fnameescape(expand("<amatch>"))|call netrw#Nread(1,expand("<amatch>"))|exe "sil doau FileReadPost ".fnameescape(expand("<amatch>"))[J
+
+line 48:  au BufWriteCmd  ftp://*,rcp://*,scp://*,http://*,file://*,dav://*,davs://*,rsync://*,sftp://*^I^I^Iexe "sil doau BufWritePre ".fnameescape(expand("<amatch>"))|exe 'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau BufWritePost ".fnameescape(expand("<amatch>"))[J
+
+line 49:  au FileWriteCmd ftp://*,rcp://*,scp://*,http://*,file://*,dav://*,davs://*,rsync://*,sftp://*^I^I^Iexe "sil doau FileWritePre ".fnameescape(expand("<amatch>"))|exe "'[,']".'Nwrite '.fnameescape(expand("<amatch>"))|exe "sil doau FileWritePost ".fnameescape(expand("<amatch>"))[J
+
+line 50:  try                                                       [J
+
+line 51:   au SourceCmd   ftp://*,rcp://*,scp://*,http://*,file://*,https://*,dav://*,davs://*,rsync://*,sftp://*^Iexe 'Nsource '.fnameescape(expand("<amatch>"))[J
+
+line 52:  catch /^Vim\%((\a\+)\)\=:E216/                            [J
+
+line 53:   au SourcePre   ftp://*,rcp://*,scp://*,http://*,file://*,https://*,dav://*,davs://*,rsync://*,sftp://*^Iexe 'Nsource '.fnameescape(expand("<amatch>"))[J
+
+line 54:  endtry[J
+
+line 55: augroup END[J
+
+line 56: [J
+
+line 57: " Commands: :Nread, :Nwrite, :NetUserPass {{{2[J
+
+line 58: com! -count=1 -nargs=*^INread^I^Ilet s:svpos= winsaveview()<bar>call netrw#NetRead(<count>,<f-args>)<bar>call winrestview(s:svpos)[J
+
+line 59: com! -range=% -nargs=*^INwrite^I^Ilet s:svpos= winsaveview()<bar><line1>,<line2>call netrw#NetWrite(<f-args>)<bar>call winrestview(s:svpos)[J
+
+line 60: com! -nargs=*^I^INetUserPass^Icall NetUserPass(<f-args>)[J
+
+line 61: com! -nargs=*^I        Nsource^I^Ilet s:svpos= winsaveview()<bar>call netrw#NetSource(<f-args>)<bar>call winrestview(s:svpos)[J
+
+line 62: com! -nargs=?^I^INtree^I^Icall netrw#SetTreetop(1,<q-args>)[J
+
+line 63: [J
+
+line 64: " Commands: :Explore, :Sexplore, Hexplore, Vexplore, Lexplore {{{2[J
+
+line 65: com! -nargs=* -bar -bang -count=0 -complete=dir^IExplore^I^Icall netrw#Explore(<count>,0,0+<bang>0,<q-args>)[J
+
+line 66: com! -nargs=* -bar -bang -count=0 -complete=dir^ISexplore^Icall netrw#Explore(<count>,1,0+<bang>0,<q-args>)[J
+
+line 67: com! -nargs=* -bar -bang -count=0 -complete=dir^IHexplore^Icall netrw#Explore(<count>,1,2+<bang>0,<q-args>)[J
+
+line 68: com! -nargs=* -bar -bang -count=0 -complete=dir^IVexplore^Icall netrw#Explore(<count>,1,4+<bang>0,<q-args>)[J
+
+line 69: com! -nargs=* -bar       -count=0 -complete=dir^ITexplore^Icall netrw#Explore(<count>,0,6        ,<q-args>)[J
+
+line 70: com! -nargs=* -bar -bang^I^I^INexplore^Icall netrw#Explore(-1,0,0,<q-args>)[J
+
+line 71: com! -nargs=* -bar -bang^I^I^IPexplore^Icall netrw#Explore(-2,0,0,<q-args>)[J
+
+line 72: com! -nargs=* -bar -bang -count=0 -complete=dir Lexplore^Icall netrw#Lexplore(<count>,<bang>0,<q-args>)[J
+
+line 73: [J
+
+line 74: " Commands: NetrwSettings {{{2[J
+
+line 75: com! -nargs=0^INetrwSettings^Icall netrwSettings#NetrwSettings()[J
+
+line 76: com! -bang^INetrwClean^Icall netrw#Clean(<bang>0)[J
+
+line 77: [J
+
+line 78: " Maps:[J
+
+line 79: if !exists("g:netrw_nogx")[J
+
+line 80:  if maparg('gx','n') == ""[J
+
+line 81:   if !hasmapto('<Plug>NetrwBrowseX')[J
+
+line 82:    nmap <unique> gx <Plug>NetrwBrowseX[J
+
+line 83:   endif[J
+
+line 84:   nno <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))<cr>[J
+
+line 85:  endif[J
+
+line 86:  if maparg('gx','v') == ""[J
+
+line 87:   if !hasmapto('<Plug>NetrwBrowseXVis')[J
+
+line 88:    vmap <unique> gx <Plug>NetrwBrowseXVis[J
+
+line 89:   endif[J
+
+line 90:   vno <silent> <Plug>NetrwBrowseXVis :<c-u>call netrw#BrowseXVis()<cr>[J
+
+line 91:  endif[J
+
+line 92: endif[J
+
+line 93: if exists("g:netrw_usetab") && g:netrw_usetab[J
+
+line 94:  if maparg('<c-tab>','n') == ""[J
+
+line 95:   nmap <unique> <c-tab> <Plug>NetrwShrink[J
+
+line 96:  endif[J
+
+line 97:  nno <silent> <Plug>NetrwShrink :call netrw#Shrink()<cr>[J
+
+line 98: endif[J
+
+line 99: [J
+
+line 100: " ---------------------------------------------------------------------[J
+
+line 101: " LocalBrowse: invokes netrw#LocalBrowseCheck() on directory buffers {{{2[J
+
+line 102: fun! s:LocalBrowse(dirname)[J
+
+line 144: [J
+
+line 145: " ---------------------------------------------------------------------[J
+
+line 146: " s:VimEnter: after all vim startup stuff is done, this function is called. {{{2[J
+
+line 147: "             Its purpose: to look over all windows and run s:LocalBrowse() on[J
+
+line 148: "             them, which checks if they're directories and will create a directory[J
+
+line 149: "             listing when appropriate.[J
+
+line 150: "             It also sets s:vimentered, letting s:LocalBrowse() know that s:VimEnter()[J
+
+line 151: "             has already been called.[J
+
+line 152: fun! s:VimEnter(dirname)[J
+
+line 160: [J
+
+line 161: " ---------------------------------------------------------------------[J
+
+line 162: " NetrwStatusLine: {{{1[J
+
+line 163: fun! NetrwStatusLine()[J
+
+line 174: [J
+
+line 175: " ------------------------------------------------------------------------[J
+
+line 176: " NetUserPass: set username and password for subsequent ftp transfer {{{1[J
+
+line 177: "   Usage:  :call NetUserPass()^I^I^I-- will prompt for userid and password[J
+
+line 178: "^I    :call NetUserPass("uid")^I^I-- will prompt for password[J
+
+line 179: "^I    :call NetUserPass("uid","password") -- sets global userid and password[J
+
+line 180: fun! NetUserPass(...)[J
+
+line 204: [J
+
+line 205: " ------------------------------------------------------------------------[J
+
+line 206: " Modelines And Restoration: {{{1[J
+
+line 207: let &cpo= s:keepcpo[J
+
+line 208: unlet s:keepcpo[J
+
+line 209: " vim:ts=8 fdm=marker[J
+
+finished sourcing /usr/share/vim/vim80/plugin/netrwPlugin.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/rrhelper.vim"[J
+line 1: " Vim plugin with helper function(s) for --remote-wait[J
+
+line 2: " Maintainer: Flemming Madsen <fma@cci.dk>[J
+
+line 3: " Last Change: 2008 May 29[J
+
+line 4: [J
+
+line 5: " Has this already been loaded?[J
+
+line 6: if exists("loaded_rrhelper") || !has("clientserver")[J
+
+line 7:   finish[J
+
+finished sourcing /usr/share/vim/vim80/plugin/rrhelper.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/spellfile.vim"[J
+line 1: " Vim plugin for downloading spell files[J
+
+line 2: " Maintainer:  Bram Moolenaar <Bram@vim.org>[J
+
+line 3: " Last Change: 2006 Feb 01[J
+
+line 4: [J
+
+line 5: " Exit quickly when:[J
+
+line 6: " - this plugin was already loaded[J
+
+line 7: " - when 'compatible' is set[J
+
+line 8: " - some autocommands are already taking care of spell files[J
+
+line 9: if exists("loaded_spellfile_plugin") || &cp || exists("#SpellFileMissing")[J
+
+line 10:   finish[J
+
+line 11: endif[J
+
+line 12: let loaded_spellfile_plugin = 1[J
+
+line 13: [J
+
+line 14: " The function is in the autoload directory.[J
+
+line 15: autocmd SpellFileMissing * call spellfile#LoadFile(expand('<amatch>'))[J
+
+finished sourcing /usr/share/vim/vim80/plugin/spellfile.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/tarPlugin.vim"[J
+line 1: " tarPlugin.vim -- a Vim plugin for browsing tarfiles[J
+
+line 2: " Original was copyright (c) 2002, Michael C. Toren <mct@toren.net>[J
+
+line 3: " Modified by Charles E. Campbell[J
+
+line 4: " Distributed under the GNU General Public License.[J
+
+line 5: "[J
+
+line 6: " Updates are available from <http://michael.toren.net/code/>.  If you[J
+
+line 7: " find this script useful, or have suggestions for improvements, please[J
+
+line 8: " let me know.[J
+
+line 9: " Also look there for further comments and documentation.[J
+
+line 10: "[J
+
+line 11: " This part only sets the autocommands.  The functions are in autoload/tar.vim.[J
+
+line 12: " ---------------------------------------------------------------------[J
+
+line 13: "  Load Once: {{{1[J
+
+line 14: if &cp || exists("g:loaded_tarPlugin")[J
+
+line 15:  finish[J
+
+line 16: endif[J
+
+line 17: let g:loaded_tarPlugin = "v29"[J
+
+line 18: let s:keepcpo          = &cpo[J
+
+line 19: set cpo&vim[J
+
+line 20: [J
+
+line 21: " ---------------------------------------------------------------------[J
+
+line 22: "  Public Interface: {{{1[J
+
+line 23: augroup tar[J
+
+line 24:   au![J
+
+line 25:   au BufReadCmd   tarfile::*^Icall tar#Read(expand("<amatch>"), 1)[J
+
+line 26:   au FileReadCmd  tarfile::*^Icall tar#Read(expand("<amatch>"), 0)[J
+
+line 27:   au BufWriteCmd  tarfile::*^Icall tar#Write(expand("<amatch>"))[J
+
+line 28:   au FileWriteCmd tarfile::*^Icall tar#Write(expand("<amatch>"))[J
+
+line 29: [J
+
+line 30:   if has("unix")[J
+
+line 31:    au BufReadCmd   tarfile::*/*^Icall tar#Read(expand("<amatch>"), 1)[J
+
+line 32:    au FileReadCmd  tarfile::*/*^Icall tar#Read(expand("<amatch>"), 0)[J
+
+line 33:    au BufWriteCmd  tarfile::*/*^Icall tar#Write(expand("<amatch>"))[J
+
+line 34:    au FileWriteCmd tarfile::*/*^Icall tar#Write(expand("<amatch>"))[J
+
+line 35:   endif[J
+
+line 36: [J
+
+line 37:   au BufReadCmd   *.tar.gz^I^Icall tar#Browse(expand("<amatch>"))[J
+
+line 38:   au BufReadCmd   *.tar^I^I^Icall tar#Browse(expand("<amatch>"))[J
+
+line 39:   au BufReadCmd   *.lrp^I^I^Icall tar#Browse(expand("<amatch>"))[J
+
+line 40:   au BufReadCmd   *.tar.bz2^I^Icall tar#Browse(expand("<amatch>"))[J
+
+line 41:   au BufReadCmd   *.tar.Z^I^Icall tar#Browse(expand("<amatch>"))[J
+
+line 42:   au BufReadCmd   *.tgz^I^I^Icall tar#Browse(expand("<amatch>"))[J
+
+line 43:   au BufReadCmd   *.tbz^I^I^Icall tar#Browse(expand("<amatch>"))[J
+
+line 44:   au BufReadCmd   *.tar.lzma^Icall tar#Browse(expand("<amatch>"))[J
+
+line 45:   au BufReadCmd   *.tar.xz^I^Icall tar#Browse(expand("<amatch>"))[J
+
+line 46:   au BufReadCmd   *.txz^I^I^Icall tar#Browse(expand("<amatch>"))[J
+
+line 47: augroup END[J
+
+line 48: com! -nargs=? -complete=file Vimuntar call tar#Vimuntar(<q-args>)[J
+
+line 49: [J
+
+line 50: " ---------------------------------------------------------------------[J
+
+line 51: " Restoration And Modelines: {{{1[J
+
+line 52: " vim: fdm=marker[J
+
+line 53: let &cpo= s:keepcpo[J
+
+line 54: unlet s:keepcpo[J
+
+finished sourcing /usr/share/vim/vim80/plugin/tarPlugin.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/tohtml.vim"[J
+line 1: " Vim plugin for converting a syntax highlighted file to HTML.[J
+
+line 2: " Maintainer: Ben Fritz <fritzophrenic@gmail.com>[J
+
+line 3: " Last Change: 2015 Sep 08[J
+
+line 4: "[J
+
+line 5: " The core of the code is in $VIMRUNTIME/autoload/tohtml.vim and[J
+
+line 6: " $VIMRUNTIME/syntax/2html.vim[J
+
+line 7: "[J
+
+line 8: " TODO: {{{[J
+
+line 9: "   * Options for generating the CSS in external style sheets. New :TOcss[J
+
+line 10: "     command to convert the current color scheme into a (mostly) generic CSS[J
+
+line 11: "     stylesheet which can be re-used. Alternate stylesheet support? Good start[J
+
+line 12: "     by Erik Falor[J
+
+line 13: "     ( https://groups.google.com/d/topic/vim_use/7XTmC4D22dU/discussion ).[J
+
+line 14: "   * Add optional argument to :TOhtml command to specify mode (gui, cterm,[J
+
+line 15: "     term) to use for the styling. Suggestion by "nacitar".[J
+
+line 16: "   * Add way to override or specify which RGB colors map to the color numbers[J
+
+line 17: "     in cterm. Get better defaults than just guessing? Suggestion by "nacitar".[J
+
+line 18: "   * Disable filetype detection until after all processing is done.[J
+
+line 19: "   * Add option for not generating the hyperlink on stuff that looks like a[J
+
+line 20: "     URL? Or just color the link to fit with the colorscheme (and only special[J
+
+line 21: "     when hovering)?[J
+
+line 22: "   * Bug: Opera does not allow printing more than one page if uncopyable[J
+
+line 23: "     regions is turned on. Possible solution: Add normal text line numbers with[J
+
+line 24: "     display:none, set to display:inline for print style sheets, and hide[J
+
+line 25: "     <input> elements for print, to allow Opera printing multiple pages (and[J
+
+line 26: "     other uncopyable areas?). May need to make the new text invisible to IE[J
+
+line 27: "     with conditional comments to prevent copying it, IE for some reason likes[J
+
+line 28: "     to copy hidden text. Other browsers too?[J
+
+line 29: "   * Bug: still a 1px gap throughout the fold column when html_prevent_copy is[J
+
+line 30: "     "fn" in some browsers. Specifically, in Chromium on Ubuntu (but not Chrome[J
+
+line 31: "     on Windows). Perhaps it is font related?[J
+
+line 32: "   * Bug: still some gaps in the fold column when html_prevent_copy contains[J
+
+line 33: "     'd' and showing the whole diff (observed in multiple browsers). Only gaps[J
+
+line 34: "     on diff lines though.[J
+
+line 35: "   * Undercurl support via CSS3, with fallback to dotted or something:[J
+
+line 36: "^Ihttps://groups.google.com/d/topic/vim_use/BzXA6He1pHg/discussion[J
+
+line 37: "   * Redo updates for modified default foldtext (v11) when/if the patch is[J
+
+line 38: "     accepted to modify it.[J
+
+line 39: "   * Test case +diff_one_file-dynamic_folds+expand_tabs-hover_unfold[J
+
+line 40: "^I^I+ignore_conceal-ignore_folding+no_foldcolumn+no_pre+no_progress[J
+
+line 41: "^I^I+number_lines-pre_wrap-use_css+use_xhtml+whole_filler.xhtml[J
+
+line 42: "     does not show the whole diff filler as it is supposed to?[J
+
+line 43: "   * Bug: when 'isprint' is wrong for the current encoding, will generate[J
+
+line 44: "     invalid content. Can/should anything be done about this? Maybe a separate[J
+
+line 45: "     plugin to correct 'isprint' based on encoding?[J
+
+line 46: "   * Check to see if the windows-125\d encodings actually work in Unix without[J
+
+line 47: "     the 8bit- prefix. Add prefix to autoload dictionaries for Unix if not.[J
+
+line 48: "   * Font auto-detection similar to[J
+
+line 49: "     http://www.vim.org/scripts/script.php?script_id=2384 but for a variety of[J
+
+line 50: "     platforms.[J
+
+line 51: "   * Error thrown when sourcing 2html.vim directly when plugins are not loaded.[J
+
+line 52: "   * Pull in code from http://www.vim.org/scripts/script.php?script_id=3113 :[J
+
+line 53: "^I- listchars support[J
+
+line 54: "^I- full-line background highlight[J
+
+line 55: "^I- other?[J
+
+line 56: "   * Make it so deleted lines in a diff don't create side-scrolling (get it[J
+
+line 57: "     free with full-line background highlight above).[J
+
+line 58: "   * Restore open/closed folds and cursor position after processing each file[J
+
+line 59: "     with option not to restore for speed increase.[J
+
+line 60: "   * Add extra meta info (generation time, etc.)?[J
+
+line 61: "   * Tidy up so we can use strict doctype in even more situations[J
+
+line 62: "   * Implementation detail: add threshold for writing the lines to the html[J
+
+line 63: "     buffer before we're done (5000 or so lines should do it)[J
+
+line 64: "   * TODO comments for code cleanup scattered throughout[J
+
+line 65: "}}}[J
+
+line 66: [J
+
+line 67: if exists('g:loaded_2html_plugin')[J
+
+line 68:   finish[J
+
+line 69: endif[J
+
+line 70: let g:loaded_2html_plugin = 'vim7.4_v2'[J
+
+line 71: [J
+
+line 72: "[J
+
+line 73: " Changelog: {{{[J
+
+line 74: "   7.4_v2  (this version): Fix error raised when converting a diff containing[J
+
+line 75: "                           an empty buffer. Jan Stocker: allow g:html_font to[J
+
+line 76: "                           take a list so it is easier to specfiy fallback[J
+
+line 77: "                           fonts in the generated CSS.[J
+
+line 78: "   7.4_v1  (Vim 7.4.0000): Fix modeline mangling for new "Vim:" format, and[J
+
+line 79: "^I^I^I    also for version-specific modelines like "vim>703:".[J
+
+line 80: "[J
+
+line 81: "   7.3 updates: {{{[J
+
+line 82: "   7.3_v14 (Vim 7.3.1246): Allow suppressing line number anchors using[J
+
+line 83: "^I^I^I    g:html_line_ids=0. Allow customizing[J
+
+line 84: "^I^I^I    important IDs (like line IDs and fold IDs) using[J
+
+line 85: "^I^I^I    g:html_id_expr evalutated when the buffer conversion[J
+
+line 86: "^I^I^I    is started.[J
+
+line 87: "   7.3_v13 (Vim 7.3.1088): Keep foldmethod at manual in the generated file and[J
+
+line 88: "^I^I^I    insert modeline to set it to manual.[J
+
+line 89: "^I^I^I    Fix bug: diff mode with 2 unsaved buffers creates a[J
+
+line 90: "^I^I^I    duplicate of one buffer instead of including both.[J
+
+line 91: "^I^I^I    Add anchors to each line so you can put '#L123'[J
+
+line 92: "^I^I^I    or '#123' at the end of the URL to jump to line 123[J
+
+line 93: "^I^I^I    (idea by Andy Spencer). Add javascript to open folds[J
+
+line 94: "^I^I^I    to show the anchor being jumped to if it is hidden.[J
+
+line 95: "^I^I^I    Fix XML validation error: &nsbp; not part of XML.[J
+
+line 96: "^I^I^I    Allow TOhtml to chain together with other commands[J
+
+line 97: "^I^I^I    using |.[J
+
+line 98: "   7.3_v12 (Vim 7.3.0616): Fix modeline mangling to also work for when multiple[J
+
+line 99: "^I^I^I    highlight groups make up the start-of-modeline text.[J
+
+line 100: "^I^I^I    Improve render time of page with uncopyable regions[J
+
+line 101: "^I^I^I    by not using one-input-per-char. Change name of[J
+
+line 102: "^I^I^I    uncopyable option from html_unselectable to[J
+
+line 103: "^I^I^I    html_prevent_copy. Added html_no_invalid option and[J
+
+line 104: "^I^I^I    default to inserting invalid markup for uncopyable[J
+
+line 105: "^I^I^I    regions to prevent MS Word from pasting undeletable[J
+
+line 106: "^I^I^I    <input> elements. Fix 'cpo' handling (Thilo Six).[J
+
+line 107: "^I^I 7.3_v12b1: Add html_unselectable option. Rework logic to[J
+
+line 108: "^I^I^I    eliminate post-processing substitute commands in[J
+
+line 109: "^I^I^I    favor of doing the work up front. Remove unnecessary[J
+
+line 110: "^I^I^I    special treatment of 'LineNr' highlight group. Minor[J
+
+line 111: "^I^I^I    speed improvements. Fix modeline mangling in[J
+
+line 112: "^I^I^I    generated output so it works for text in the first[J
+
+line 113: "^I^I^I    column. Fix missing line number and fold column in[J
+
+line 114: "^I^I^I    diff filler lines. Fix that some fonts have a 1px[J
+
+line 115: "^I^I^I    gap (using a dirty hack, improvements welcome). Add[J
+
+line 116: "^I^I^I    "colorscheme" meta tag. Does NOT include support for[J
+
+line 117: "^I^I^I    the new default foldtext added in v11, as the patch[J
+
+line 118: "^I^I^I    adding it has not yet been included in Vim.[J
+
+line 119: "   7.3_v11 ( unreleased ): Support new default foldtext from patch by Christian[J
+
+line 120: "^I^I^I    Brabandt in[J
+
+line 121: "^I^I^I    http://groups.google.com/d/topic/vim_dev/B6FSGfq9VoI/discussion.[J
+
+line 122: "^I^I^I    This patch has not yet been included in Vim, thus[J
+
+line 123: "^I^I^I    these changes are removed in the next version.[J
+
+line 124: "   7.3_v10 (Vim 7.3.0227): Fix error E684 when converting a range wholly inside[J
+
+line 125: "^I^I^I    multiple nested folds with dynamic folding on.[J
+
+line 126: "^I^I^I    Also fix problem with foldtext in this situation.[J
+
+line 127: "   7.3_v9  (Vim 7.3.0170): Add html_pre_wrap option active with html_use_css[J
+
+line 128: "^I^I^I    and without html_no_pre, default value same as[J
+
+line 129: "^I^I^I    'wrap' option, (Andy Spencer). Don't use[J
+
+line 130: "^I^I^I    'fileencoding' for converted document encoding if[J
+
+line 131: "^I^I^I    'buftype' indicates a special buffer which isn't[J
+
+line 132: "^I^I^I    written.[J
+
+line 133: "   7.3_v8  (Vim 7.3.0100): Add html_expand_tabs option to allow leaving tab[J
+
+line 134: "^I^I^I    characters in generated output (Andy Spencer).[J
+
+line 135: "^I^I^I    Escape text that looks like a modeline so Vim[J
+
+line 136: "^I^I^I    doesn't use anything in the converted HTML as a[J
+
+line 137: "^I^I^I    modeline. Bugfixes: Fix folding when a fold starts[J
+
+line 138: "^I^I^I    before the conversion range. Remove fold column when[J
+
+line 139: "^I^I^I    there are no folds.[J
+
+line 140: "   7.3_v7  (Vim 7-3-0063): see betas released on vim_dev below:[J
+
+line 141: "^I^I  7.3_v7b3: Fixed bug, convert Unicode to UTF-8 all the way.[J
+
+line 142: "^I^I  7.3_v7b2: Remove automatic detection of encodings that are not[J
+
+line 143: "^I^I^I    supported by all major browsers according to[J
+
+line 144: "^I^I^I    http://wiki.whatwg.org/wiki/Web_Encodings and[J
+
+line 145: "^I^I^I    convert to UTF-8 for all Unicode encodings. Make[J
+
+line 146: "^I^I^I    HTML encoding to Vim encoding detection be[J
+
+line 147: "^I^I^I    case-insensitive for built-in pairs.[J
+
+line 148: "^I^I  7.3_v7b1: Remove use of setwinvar() function which cannot be[J
+
+line 149: "^I^I^I    called in restricted mode (Andy Spencer). Use[J
+
+line 150: "^I^I^I    'fencoding' instead of 'encoding' to determine by[J
+
+line 151: "^I^I^I    charset, and make sure the 'fenc' of the generated[J
+
+line 152: "^I^I^I    file matches its indicated charset. Add charsets for[J
+
+line 153: "^I^I^I    all of Vim's natively supported encodings.[J
+
+line 154: "   7.3_v6  (Vim 7.3.0000): Really fix bug with 'nowrapscan', 'magic' and other[J
+
+line 155: "^I^I^I    user settings interfering with diff mode generation,[J
+
+line 156: "^I^I^I    trailing whitespace (e.g. line number column) when[J
+
+line 157: "^I^I^I    using html_no_pre, and bugs when using[J
+
+line 158: "^I^I^I    html_hover_unfold.[J
+
+line 159: "   7.3_v5  ( unreleased ): Fix bug with 'nowrapscan' and also with out-of-sync[J
+
+line 160: "^I^I^I    folds in diff mode when first line was folded.[J
+
+line 161: "   7.3_v4  (Vim 7.3.0000): Bugfixes, especially for xhtml markup, and diff mode[J
+
+line 162: "   7.3_v3  (Vim 7.3.0000): Refactor option handling and make html_use_css[J
+
+line 163: "^I^I^I    default to true when not set to anything. Use strict[J
+
+line 164: "^I^I^I    doctypes where possible. Rename use_xhtml option to[J
+
+line 165: "^I^I^I    html_use_xhtml for consistency. Use .xhtml extension[J
+
+line 166: "^I^I^I    when using this option. Add meta tag for settings.[J
+
+line 167: "   7.3_v2  (Vim 7.3.0000): Fix syntax highlighting in diff mode to use both the[J
+
+line 168: "^I^I^I    diff colors and the normal syntax colors[J
+
+line 169: "   7.3_v1  (Vim 7.3.0000): Add conceal support and meta tags in output[J
+
+line 170: "}}}[J
+
+line 171: "}}}[J
+
+line 172: [J
+
+line 173: " Define the :TOhtml command when:[J
+
+line 174: " - 'compatible' is not set[J
+
+line 175: " - this plugin was not already loaded[J
+
+line 176: " - user commands are available. {{{[J
+
+line 177: if !&cp && !exists(":TOhtml") && has("user_commands")[J
+
+line 178:   command -range=% -bar TOhtml :call tohtml#Convert2HTML(<line1>, <line2>)[J
+
+line 179: endif "}}}[J
+
+line 180: [J
+
+line 181: " Make sure any patches will probably use consistent indent[J
+
+line 182: "   vim: ts=8 sw=2 sts=2 noet fdm=marker[J
+
+finished sourcing /usr/share/vim/vim80/plugin/tohtml.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/vimballPlugin.vim"[J
+line 1: " vimballPlugin : construct a file containing both paths and files[J
+
+line 2: " Author: Charles E. Campbell[J
+
+line 3: " Copyright: (c) 2004-2014 by Charles E. Campbell[J
+
+line 4: "            The VIM LICENSE applies to Vimball.vim, and Vimball.txt[J
+
+line 5: "            (see |copyright|) except use "Vimball" instead of "Vim".[J
+
+line 6: "            No warranty, express or implied.[J
+
+line 7: "  *** ***   Use At-Your-Own-Risk!   *** ***[J
+
+line 8: "[J
+
+line 9: " (Rom 2:1 WEB) Therefore you are without excuse, O man, whoever you are who[J
+
+line 10: "      judge. For in that which you judge another, you condemn yourself. For[J
+
+line 11: "      you who judge practice the same things.[J
+
+line 12: " GetLatestVimScripts: 1502 1 :AutoInstall: vimball.vim[J
+
+line 13: [J
+
+line 14: " ---------------------------------------------------------------------[J
+
+line 15: "  Load Once: {{{1[J
+
+line 16: if &cp || exists("g:loaded_vimballPlugin")[J
+
+line 17:  finish[J
+
+line 18: endif[J
+
+line 19: let g:loaded_vimballPlugin = "v37"[J
+
+line 20: let s:keepcpo              = &cpo[J
+
+line 21: set cpo&vim[J
+
+line 22: [J
+
+line 23: " ------------------------------------------------------------------------------[J
+
+line 24: " Public Interface: {{{1[J
+
+line 25: com! -range   -complete=file -nargs=+ -bang MkVimball^I^Icall vimball#MkVimball(<line1>,<line2>,<bang>0,<f-args>)[J
+
+line 26: com! -nargs=? -complete=dir  UseVimball^I^I^I^I^I^Icall vimball#Vimball(1,<f-args>)[J
+
+line 27: com! -nargs=0                VimballList^I^I^I^I^Icall vimball#Vimball(0)[J
+
+line 28: com! -nargs=* -complete=dir  RmVimball^I^I^I^I^I^Icall vimball#SaveSettings()|call vimball#RmVimball(<f-args>)|call vimball#RestoreSettings()[J
+
+line 29: augroup Vimball[J
+
+line 30:  au![J
+
+line 31:  au BufEnter  *.vba,*.vba.gz,*.vba.bz2,*.vba.zip,*.vba.xz^Isetlocal bt=nofile fmr=[[[,]]] fdm=marker|if &ff != 'unix'|setlocal ma ff=unix noma|endif|if line('$') > 1|call vimball#ShowMesg(0,"Source this file to extract it! (:so %)")|endif[J
+
+line 32:  au SourceCmd *.vba.gz,*.vba.bz2,*.vba.zip,*.vba.xz^I^I^Ilet s:origfile=expand("%")|if expand("%")!=expand("<afile>") | exe "1sp" fnameescape(expand("<afile>"))|endif|call vimball#Decompress(expand("<amatch>"))|so %|if s:origfile!=expand("<afile>")|close|endif[J
+
+line 33:  au SourceCmd *.vba^I^I^I^I^I^I^I^I^I^I^Iif expand("%")!=expand("<afile>") | exe "1sp" fnameescape(expand("<afile>"))|call vimball#Vimball(1)|close|else|call vimball#Vimball(1)|endif[J
+
+line 34:  au BufEnter  *.vmb,*.vmb.gz,*.vmb.bz2,*.vmb.zip,*.vmb.xz^Isetlocal bt=nofile fmr=[[[,]]] fdm=marker|if &ff != 'unix'|setlocal ma ff=unix noma|endif|if line('$') > 1|call vimball#ShowMesg(0,"Source this file to extract it! (:so %)")|endif[J
+
+line 35:  au SourceCmd *.vmb.gz,*.vmb.bz2,*.vmb.zip,*.vmb.xz^I^I^Ilet s:origfile=expand("%")|if expand("%")!=expand("<afile>") | exe "1sp" fnameescape(expand("<afile>"))|endif|call vimball#Decompress(expand("<amatch>"))|so %|if s:origfile!=expand("<afile>")|close|endif[J
+
+line 36:  au SourceCmd *.vmb^I^I^I^I^I^I^I^I^I^I^Iif expand("%")!=expand("<afile>") | exe "1sp" fnameescape(expand("<afile>"))|call vimball#Vimball(1)|close|else|call vimball#Vimball(1)|endif[J
+
+line 37: augroup END[J
+
+line 38: [J
+
+line 39: " =====================================================================[J
+
+line 40: " Restoration And Modelines: {{{1[J
+
+line 41: " vim: fdm=marker[J
+
+line 42: let &cpo= s:keepcpo[J
+
+line 43: unlet s:keepcpo[J
+
+finished sourcing /usr/share/vim/vim80/plugin/vimballPlugin.vim[J
+chdir(/usr/share/vim/vim80/plugin)[J
+fchdir() to previous dir[J
+sourcing "/usr/share/vim/vim80/plugin/zipPlugin.vim"[J
+line 1: " zipPlugin.vim: Handles browsing zipfiles[J
+
+line 2: "            PLUGIN PORTION[J
+
+line 3: " Date:^I^I^ISep 13, 2016[J
+
+line 4: " Maintainer:^ICharles E Campbell <NdrOchip@ScampbellPfamily.AbizM-NOSPAM>[J
+
+line 5: " License:^I^IVim License  (see vim's :help license)[J
+
+line 6: " Copyright:    Copyright (C) 2005-2016 Charles E. Campbell {{{1[J
+
+line 7: "               Permission is hereby granted to use and distribute this code,[J
+
+line 8: "               with or without modifications, provided that this copyright[J
+
+line 9: "               notice is copied with it. Like anything else that's free,[J
+
+line 10: "               zipPlugin.vim is provided *as is* and comes with no warranty[J
+
+line 11: "               of any kind, either expressed or implied. By using this[J
+
+line 12: "               plugin, you agree that in no event will the copyright[J
+
+line 13: "               holder be liable for any damages resulting from the use[J
+
+line 14: "               of this software.[J
+
+line 15: "[J
+
+line 16: " (James 4:8 WEB) Draw near to God, and he will draw near to you.[J
+
+line 17: " Cleanse your hands, you sinners; and purify your hearts, you double-minded.[J
+
+line 18: " ---------------------------------------------------------------------[J
+
+line 19: " Load Once: {{{1[J
+
+line 20: if &cp || exists("g:loaded_zipPlugin")[J
+
+line 21:  finish[J
+
+line 22: endif[J
+
+line 23: let g:loaded_zipPlugin = "v28"[J
+
+line 24: let s:keepcpo          = &cpo[J
+
+line 25: set cpo&vim[J
+
+line 26: [J
+
+line 27: " ---------------------------------------------------------------------[J
+
+line 28: " Options: {{{1[J
+
+line 29: if !exists("g:zipPlugin_ext")[J
+
+line 30:  let g:zipPlugin_ext='*.apk,*.celzip,*.crtx,*.docm,*.docx,*.dotm,*.dotx,*.ear,*.epub,*.gcsx,*.glox,*.gqsx,*.ja,*.jar,*.kmz,*.oxt,*.potm,*.potx,*.ppam,*.ppsm,*.ppsx,*.pptm,*.pptx,*.sldx,*.thmx,*.vdw,*.war,*.wsz,*.xap,*.xlam,*.xlam,*.xlsb,*.xlsm,*.xlsx,*.xltm,*.xltx,*.xpi,*.zip'[J
+
+line 31: endif[J
+
+line 32: [J
+
+line 33: " ---------------------------------------------------------------------[J
+
+line 34: " Public Interface: {{{1[J
+
+line 35: augroup zip[J
+
+line 36:  au![J
+
+line 37:  au BufReadCmd   zipfile:*^Icall zip#Read(expand("<amatch>"), 1)[J
+
+line 38:  au FileReadCmd  zipfile:*^Icall zip#Read(expand("<amatch>"), 0)[J
+
+line 39:  au BufWriteCmd  zipfile:*^Icall zip#Write(expand("<amatch>"))[J
+
+line 40:  au FileWriteCmd zipfile:*^Icall zip#Write(expand("<amatch>"))[J
+
+line 41: [J
+
+line 42:  if has("unix")[J
+
+line 43:   au BufReadCmd   zipfile:*/*^Icall zip#Read(expand("<amatch>"), 1)[J
+
+line 44:   au FileReadCmd  zipfile:*/*^Icall zip#Read(expand("<amatch>"), 0)[J
+
+line 45:   au BufWriteCmd  zipfile:*/*^Icall zip#Write(expand("<amatch>"))[J
+
+line 46:   au FileWriteCmd zipfile:*/*^Icall zip#Write(expand("<amatch>"))[J
+
+line 47:  endif[J
+
+line 48: [J
+
+line 49:  exe "au BufReadCmd ".g:zipPlugin_ext.' call zip#Browse(expand("<amatch>"))'[J
+
+line 49: au BufReadCmd *.apk,*.celzip,*.crtx,*.docm,*.docx,*.dotm,*.dotx,*.ear,*.epub,*.gcsx,*.glox,*.gqsx,*.ja,*.jar,*.kmz,*.oxt,*.potm,*.potx,*.ppam,*.ppsm,*.ppsx,*.pptm,*.pptx,*.sldx,*.thmx,*.vdw,*.war,*.wsz,*.xap,*.xlam,*.xlam,*.xlsb,*.xlsm,*.xlsx,*.xltm,*.xltx,*.xpi,*.zip call zip#Browse(expand("<amatch>"))[J
+
+line 50: augroup END[J
+
+line 51: [J
+
+line 52: " ---------------------------------------------------------------------[J
+
+line 53: "  Restoration And Modelines: {{{1[J
+
+line 54: "  vim: fdm=marker[J
+
+line 55: let &cpo= s:keepcpo[J
+
+line 56: unlet s:keepcpo[J
+
+finished sourcing /usr/share/vim/vim80/plugin/zipPlugin.vim[J
+Searching for "pack/*/start/*" in "/Users/jzhu/.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,/Users/jzhu/.vim/after"[J
+Searching for "/Users/jzhu/.vim/pack/*/start/*"[J
+Searching for "/usr/share/vim/vimfiles/pack/*/start/*"[J
+Searching for "/usr/share/vim/vim80/pack/*/start/*"[J
+Searching for "/usr/share/vim/vimfiles/after/pack/*/start/*"[J
+Searching for "/Users/jzhu/.vim/after/pack/*/start/*"[J
+not found in 'packpath': "pack/*/start/*"[J
+Searching for "plugin/**/*.vim" in "/Users/jzhu/.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,/Users/jzhu/.vim/after"[J
+Searching for "/usr/share/vim/vimfiles/after/plugin/**/*.vim"[J
+Searching for "/Users/jzhu/.vim/after/plugin/**/*.vim"[J
+not found in 'runtimepath': "plugin/**/*.vim"[J
+Reading viminfo file "/Users/jzhu/.viminfo" info oldfiles[J[?2004h
+Press ENTER or type command to continue[?25h[?1049h[?1h=[?2004h[1;102r[?12h[?12l[27m[29m[m[H[2J[?25l[102;1HExecuting BufEnter Auto commands for "*"
+autocommand sil call s:LocalBrowse(expand("<amatch>"))
+line 0: sil call s:LocalBrowse(expand("<amatch>"))
+Executing VimEnter Auto commands for "*"
+[32mPress ENTER or type command to continue[?25h[m
+[?25lautocommand sil call s:VimEnter(expand("<amatch>"))
+[32mPress ENTER or type command to continue[?25h[m
+[?25lline 0: sil call s:VimEnter(expand("<amatch>"))
+[32mPress ENTER or type command to continue[?25h[?25l[mExecuting CursorMoved Auto commands for "*"
+[32mPress ENTER or type command to continue[?25h[m
+[?25lautocommand call s:Highlight_Matching_Pair()
+[32mPress ENTER or type command to continue[?25h[m
+[?25lline 0: call s:Highlight_Matching_Pair()
+calling function <SNR>9_Highlight_Matching_Pair()
+line 1:   " Remove any previous match.
+line 2:   if exists('w:paren_hl_on') && w:paren_hl_on
+line 3:     silent! call matchdelete(3)
+line 4:     let w:paren_hl_on = 0
+line 5:   endif
+line 6:
+line 7:   " Avoid that we remove the popup menu.
+line 8:   " Return when there are no colors (looks like the cursor jumps).
+line 9:   if pumvisible() || (&t_Co < 8 && !has("gui_running"))
+line 10:     return
+line 11:   endif
+line 12:
+line 13:   " Get the character under the cursor and check if it's in 'matchpairs'.
+line 14:   let c_lnum = line('.')
+line 15:   let c_col = col('.')
+line 16:   let before = 0
+line 17:
+line 18:   let text = getline(c_lnum)
+line 19:   let matches = matchlist(text, '\(.\)\=\%'.c_col.'c\(.\=\)')
+line 20:   if empty(matches)
+line 21:     let [c_before, c] = ['', '']
+line 22:   else
+line 23:     let [c_before, c] = matches[1:2]
+line 24:   endif
+line 25:   let plist = split(&matchpairs, '.\zs[:,]')
+line 26:   let i = index(plist, c)
+line 27:   if i < 0
+line 28:     " not found, in Insert mode try character before the cursor
+line 29:     if c_col > 1 && (mode() == 'i' || mode() == 'R')
+line 30:[7Clet before = strlen(c_before)
+line 31:[7Clet c = c_before
+line 32:[7Clet i = index(plist, c)
+line 33:     endif
+line 34:     if i < 0
+line 35:[7C" not found, nothing to do
+line 36:[7Creturn
+function <SNR>9_Highlight_Matching_Pair returning #0
+continuing in CursorMoved Auto commands for "*"
+[1;1H[52L[1;1H[38;5;130m  1 [m[4m                                                                                                                                                                                                            [m[2;1H[94m~                                                                                                                                                                                                               [3;1H~                                                                                                                                                                                                               [4;1H~                                                                                                                                                                                                               [5;1H~                                                                                                                                                                                                               [6;1H~                                                                                                                                                                                                               [7;1H~                                                                                                                                                                                                               [8;1H~                                                                                                                                                                                                               [9;1H~                                                                                                                                                                                                               [10;1H~                                                                                                                                                                                                               [11;1H~                                                                                                                                                                                                               [12;1H~                                                                                                                                                                                                               [13;1H~                                                                                                                                                                                                               [14;1H~                                                                                                                                                                                                               [15;1H~                                                                                                                                                                                                               [16;1H~                                                                                                                                                                                                               [17;1H~                                                                                                                                                                                                               [18;1H~                                                                                                                                                                                                               [19;1H~                                                                                                                                                                                                               [20;1H~                                                                                                                                                                                                               [21;1H~                                                                                                                                                                                                               [22;1H~                                                                                                                                                                                                               [23;1H~                                                                                                                                                                                                               [24;1H~                                                                                                                                                                                                               [25;1H~                                                                                                                                                                                                               [26;1H~                                                                                                                                                                                                               [27;1H~                                                                                                                                                                                                               [28;1H~                                                                                                                                                                                                               [29;1H~                                                                                                                                                                                                               [30;1H~                                                                                                                                                                                                               [31;1H~                                                                                                                                                                                                               [32;1H~                                                                                                                                                                                                               [33;1H~                                                                                                                                                                                                               [34;1H~                                                                                                                                                                                                               [35;1H~                                                                                                                                                                                                               [36;1H~                                                                                                                                                                                                               [37;1H~                                                                                                                                                                                                               [38;1H~                                                                                                                                                                                                               [39;1H~                                                                                                                                                                                                               [40;1H~                                                                                                                                                                                                               [41;1H~                                                                                                                                                                                                               [42;1H~                                                                                                                                                                                                               [43;1H~                                                                                                                                                                                                               [44;1H~                                                                                                                                                                                                               [45;1H~                                                                                                                                                                                                               [46;1H~                                                                                                                                                                                                               [47;1H~                                                                                                                                                                                                               [48;1H~                                                                                                                                                                                                               [49;1H~                                                                                                                                                                                                               [50;1H~                                                                                                                                                                                                               [51;1H~                                                                                                                                                                                                               [52;1H~                                                                                                                                                                                                               [53;1H~                                                                                                                                                                                                               [54;1H~                                                                                                                                                                                                               [55;1H~                                                                                                                                                                                                               [56;1H~                                                                                                                                                                                                               [57;1H~                                                                                                                                                                                                               [58;1H~                                                                                                                                                                                                               [59;1H~                                                                                                                                                                                                               [60;1H~                                                                                                                                                                                                               [61;1H~                                                                                                                                                                                                               [62;1H~                                                                                                                                                                                                               [63;1H~                                                                                                                                                                                                               [64;1H~                                                                                                                                                                                                               [65;1H~                                                                                                                                                                                                               [66;1H~                                                                                                                                                                                                               [67;1H~                                                                                                                                                                                                               [68;1H~                                                                                                                                                                                                               [69;1H~                                                                                                                                                                                                               [70;1H~                                                                                                                                                                                                               [71;1H~                                                                                                                                                                                                               [72;1H~                                                                                                                                                                                                               [73;1H~                                                                                                                                                                                                               [74;1H~                                                                                                                                                                                                               [75;1H~                                                                                                                                                                                                               [76;1H~                                                                                                                                                                                                               [77;1H~                                                                                                                                                                                                               [78;1H~                                                                                                                                                                                                               [79;1H~                                                                                                                                                                                                               [80;1H~                                                                                                                                                                                                               [81;1H~                                                                                                                                                                                                               [82;1H~                                                                                                                                                                                                               [83;1H~                                                                                                                                                                                                               [84;1H~                                                                                                                                                                                                               [85;1H~                                                                                                                                                                                                               [86;1H~                                                                                                                                                                                                               [87;1H~                                                                                                                                                                                                               [88;1H~                                                                                                                                                                                                               [89;1H~                                                                                                                                                                                                               [90;1H~                                                                                                                                                                                                               [91;1H~                                                                                                                                                                                                               [92;1H~                                                                                                                                                                                                               [93;1H~                                                                                                                                                                                                               [94;1H~                                                                                                                                                                                                               [95;1H~                                                                                                                                                                                                               [96;1H~                                                                                                                                                                                                               [97;1H~                                                                                                                                                                                                               [98;1H~                                                                                                                                                                                                               [99;1H~                                                                                                                                                                                                               [100;1H~                                                                                                                                                                                                               [101;1H~                                                                                                                                                                                                               [m[102;1H[K[46;96HVIM - Vi IMproved[48;97Hversion 8.0.1283[49;93Hby Bram Moolenaar et al.[50;83HVim is open source and freely distributable[52;90HHelp poor children in Uganda![53;82Htype  :help iccf[34m<Enter>[m       for information [55;82Htype  :q[34m<Enter>[m               to exit         [56;82Htype  :help[34m<Enter>[m  or  [34m<F1>[m  for on-line help[57;82Htype  :help version8[34m<Enter>[m   for version info[1;5H[?25h[?25l[102;198H^M[1;5H[102;198H  [1;5H[?25h[?25l[102;198H:[1;5H[102;198H[K[102;1H:[?2004h[?25hq[?25lWriting viminfo file "/Users/jzhu/.viminfo"[?2004l[?2004l[?1l>[?25h[?1049l
