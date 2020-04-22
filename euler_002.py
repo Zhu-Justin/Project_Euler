@@ -38,5 +38,5 @@ ans = int((1 / math.sqrt(5)) * (
         psi3 * ((1 - psi3 ** k) / (1 - psi3))
     ))
 
-print(ans)
+print(sum)
 
