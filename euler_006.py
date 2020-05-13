@@ -15,9 +15,17 @@ hundred natural numbers and the square of the sum.
 
 """
 
+N = 100
+# Lists
 x = [i for i in range(100)]
 y = [i**2 for i in range(100)]
+sum(x)
 z = sum(x)**2 - sum(y)
-print(z)
+# print(z)
 
-
+# Math
+sum = N * (N+1)// 2
+squared = (N * (N + 1) * (2 * N + 1)) // 6
+ 
+result = sum * sum - squared
+print(result)
