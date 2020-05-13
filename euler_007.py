@@ -7,5 +7,23 @@ that the 6th prime is 13.
 What is the 10001st prime number?
 
 """
+import math
 
+def primes_sieve(n):
+    p_n = int(2 * n * math.log(n))       # over-estimate p_n
+    sieve = [True] * p_n                 # everything is prime to start
+    count = 0
+
+    for i in range(2, p_n):
+        if sieve[i]:                       # still prime?
+            count += 1                     # count it!
+            if count == n:                 # done!
+                return i
+            for j in range(2*i, p_n, i):   # cross off all multiples of i
+                sieve[j] = False
+    return -1
+
+
+N = 10001
+print(primes_sieve(N))
 
