@@ -1,9 +1,3 @@
-"""
-Problem 8: Largest product in a series
-
-Find the greatest product of thirteen consecutive digits in the 1000-digit
-number.
-
             73167176531330624919225119674426574742355349194934
             96983520312774506326239578318016984801869478851843
             85861560789112949495459501737958331952853208805511
@@ -24,25 +18,3 @@ number.
             84580156166097919133875499200524063689912560717606
             05886116467109405077541002256983155200055935729725
             71636269561882670428252483600823257530420752963450
-
-"""
-
-from operator import mul
-from functools import reduce
-
-# d = map(int, ''.join(line.strip() for line in open('8.txt')))
-d = [v for line in open('8.txt') for v in line.split()]
-x = list(map(int, ''.join(d)))
-length = len(x)
-
-L = 13
-
-ans = max(reduce(mul, x[i:i+L]) for i in range(length-L+1))
-
-# print('Greatest product of', L, 'consecutive \ndigits =') 
-# print("None."  if L>len(d) else 
-#             max(reduce(mul, d[i:i+L]) for i in
-#                 xrange(len(d)-L+1)))
-
-print(ans)
-
