@@ -25,5 +25,5 @@ def primes_sieve(n):
                 sieve[j] = False
     return ans
 
-print(primes_sieve(int(1e6)))
+print(primes_sieve(int(2e6)))
 
