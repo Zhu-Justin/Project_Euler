@@ -47,4 +47,5 @@ for i in range(rows):
                      g[i][j+3] * g[i+1][j+2] * g[i+2][j+1] * g[i+3][j])
         maxp = max(maxp, phv, pdd)
  
- print(maxp)
+
+print(maxp)
